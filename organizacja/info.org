@@ -1,0 +1,18 @@
+* Opis
+- strona tytółowa
+- tytół autorzy
+- nazwa przedmiotu
+- koncepcja projektu
+- Przegląd innych podobnych rozwiązań, jeżeli istnieją
+- Specyfikacja projektowa zawierająca opis i uzasadnienie wyboru konkretnych technologii
+** Techniczna implementacja
+- zrzuty ekanu
+- opis listingów(kod źródłowy)
+- Wnioski zawierające podsumowanie wyknonanych działań i możliwości rozwouj aplikacji w przyszłości
+* Załączniki projektowe
+- Instrukcja instalacji i obsługi aplikacji
+- Wymagania aplikacji w tym niezbędne oprgoramowanie do jej uruchomienia.
+* Kod źródłowy
+* Oświadczenie o samodzielności projektów
+- ręczne podpisy
+- data
