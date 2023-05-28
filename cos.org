@@ -1,0 +1,15 @@
+#+title: Cos
+* Kalkluator statystyk postaci na potrzeby gry RPG.
+- Dodawanie postaci
+- Modyfikwanie postaci
+- Dodawanie ekwipunku
+- Dodawanie przedmiotów na potrzeby gry.
+- Dodawanie umiejętności postaci (np. zaklęć)
+- Stany postaci, buffy debuffy
+** statystki postaci
+- siła
+- zręcność
+- inteligencja
+- wiedza
+- wytrzymałość
+- szybkość
