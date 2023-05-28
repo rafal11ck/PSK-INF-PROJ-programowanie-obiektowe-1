@@ -1,7 +1,6 @@
-
 #ifndef GAMEDATA_H
 #define GAMEDATA_H
-#include "gameStat.h"
+#include "gameStat.hpp"
 #include <vector>
 
 class GameMetadata {
