@@ -10,18 +10,27 @@
 
 /**
  *@brief Constructor.
+ *@param name Name of Stat.
  **/
 Stat::Stat(std::string name) : m_name(name){};
 
 /**
- *@brief data extraction to stream.
+ *@brief Data extraction to stream.
+ *@param out Where to print to.
+ *@return out parameter.
  **/
 std::ostream &Stat::print(std::ostream &out) const {
-  out << "{" << m_name << "}";
+  out << "Stat{name=\"" << m_name << "\"}";
   return out;
 }
 
+/**
+ *@brief Stream extraction.
+ *@param os Stream to which extract to.
+ *@param data what to extract.
+ *@return os paramater.
+ *Calls  Stat::print() internally;
+ * */
 std::ostream &operator<<(std::ostream &os, const Stat &data) {
-  data.print(os);
-  return os;
+  return data.print(os);
 }

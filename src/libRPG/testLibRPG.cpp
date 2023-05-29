@@ -1,21 +1,21 @@
-#include "gameMetadata.h"
+#include "gameStats.h"
 #include <iostream>
 #include <ostream>
 #include <string>
 
 constexpr std::ostream &os{std::cout};
 
-GameMetadata game{};
+GameStats gameStats{};
 
 void addStats() {
 
   for (std::string it : std::vector<std::string>{
            "wytrzymałość", "zręczność", "inteligencja", "wiedza", "szybkość"}) {
-    game.addStat(it);
+    gameStats.addStat(it);
   }
 
   os << "Game stats\n";
-  for (const Stat &it : game.getStats()) {
+  for (const Stat &it : gameStats.getStats()) {
     os << it << '\n';
   }
 }

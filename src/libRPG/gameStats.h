@@ -1,5 +1,5 @@
-#ifndef GAMEDATA_H
-#define GAMEDATA_H
+#ifndef GAMESTATS_H
+#define GAMESTATS_H
 
 /**
  *@file
@@ -13,10 +13,10 @@
 /**
  *@brief Contains information about game metadata.
  */
-class GameMetadata {
+class GameStats {
 public:
   /**
-   *@breif
+   *@brief
    *Stat repestantion within infromation about game.
    **/
   class GameStat : public Stat {
@@ -26,9 +26,11 @@ public:
 
     GameStat(std::string name, id_t id);
 
-    virtual std::ostream &print(std::ostream &out);
+  private:
+    virtual std::ostream &print(std::ostream &out) const;
 
   private:
+    //! id of GameStat, should be unique within GameStats instance.
     const id_t m_id;
   };
 
@@ -38,7 +40,6 @@ public:
 
 public:
   void addStat(std::string statName);
-  void addEquipableSlot(std::string name);
   const gameStats_t &getStats();
 
 private:
@@ -48,4 +49,4 @@ private:
   gameStats_t m_stats;
 };
 
-#endif // GAMEDATA_H
+#endif // GAMESTATS_H

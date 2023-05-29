@@ -14,9 +14,10 @@
 class Stat {
 public:
   Stat(std::string name);
-
-  virtual std::ostream &print(std::ostream &out) const;
   friend std::ostream &operator<<(std::ostream &os, const Stat &data);
+
+private:
+  virtual std::ostream &print(std::ostream &out) const;
 
 protected:
   //! Name of stat.
