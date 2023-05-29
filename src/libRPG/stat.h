@@ -11,18 +11,14 @@
  *@brief
  *Gamestat, represents statistics (types like atack, defense) in game.
  **/
-class GameStat {
+class Stat {
 public:
-  //! type used for GameStat::m_id.
-  using id_t = int;
+  Stat(std::string name);
 
-  GameStat(std::string name, id_t id);
+  virtual std::ostream &print(std::ostream &out) const;
+  friend std::ostream &operator<<(std::ostream &os, const Stat &data);
 
-  friend std::ostream &operator<<(std::ostream &os, const GameStat &data);
-
-private:
-  //! See GameMetadata.
-  id_t m_id;
+protected:
   //! Name of stat.
   std::string m_name;
 };
