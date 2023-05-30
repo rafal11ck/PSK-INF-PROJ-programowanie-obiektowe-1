@@ -1,3 +1,6 @@
+#ifndef EQUIPMENTSLOTS_H
+#define EQUIPMENTSLOTS_H
+
 #include "equipmentSlotBase.h"
 #include <vector>
 
@@ -15,8 +18,7 @@ protected:
     using id_t = int;
 
   public:
-    //! @todo make it take slotBase and extend it(give it id);
-    EquipmentSlot(EquiptmentSlotBase base, id_t id);
+    EquipmentSlot(const EquiptmentSlotBase &base, id_t id);
 
   private:
     //! Locally unique id.
@@ -24,9 +26,10 @@ protected:
   };
 
 public:
+  //! Collection type.
   using equipmentSlots_t = std::vector<EquipmentSlot>;
 
-  void addEquipmentSlot(EquiptmentSlotBase);
+  void addEquipmentSlot(const EquiptmentSlotBase &base);
 
 protected:
   //! ID given to next equipable item.
@@ -34,3 +37,5 @@ protected:
   //! container of EquipmentSlot
   equipmentSlots_t m_equipmentSlots;
 };
+
+#endif // EQUIPMENTSLOTS_H
