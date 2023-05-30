@@ -11,7 +11,7 @@
 #include <vector>
 
 /**
- *@brief Contains information about game metadata.
+ *@brief Holds collection of Stats. Maintains locally unique ids.
  */
 class GameStats {
 public:
