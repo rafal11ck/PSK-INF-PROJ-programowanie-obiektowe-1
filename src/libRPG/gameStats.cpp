@@ -4,15 +4,15 @@
  **/
 
 #include "gameStats.h"
-#include "stat.h"
+#include "statBase.h"
 
 /**
  *@brief Constructor.
- *@param name Name of stat.
+ *@param statB StatBase.
  *@param id of stat.
  **/
-GameStats::GameStat::GameStat(std::string name, id_t id)
-    : Stat(name), m_id(id){};
+GameStats::GameStat::GameStat(const StatBase &statB, id_t id)
+    : StatBase(statB), m_id(id){};
 
 /**
  *@brief Print content of GameStat into stream.

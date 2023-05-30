@@ -15,7 +15,7 @@ void addStats() {
   }
 
   os << "Game stats\n";
-  for (const Stat &it : gameStats.getStats()) {
+  for (const StatBase &it : gameStats.getStats()) {
     os << it << '\n';
   }
 }

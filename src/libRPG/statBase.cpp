@@ -1,5 +1,5 @@
 
-#include "stat.h"
+#include "statBase.h"
 #include <ostream>
 #include <string>
 
@@ -12,15 +12,15 @@
  *@brief Constructor.
  *@param name Name of Stat.
  **/
-Stat::Stat(std::string name) : m_name(name){};
+StatBase::StatBase(std::string name) : m_name(name){};
 
 /**
  *@brief Data extraction to stream.
  *@param out Where to print to.
  *@return out parameter.
  **/
-std::ostream &Stat::print(std::ostream &out) const {
-  out << "Stat{name=\"" << m_name << "\"}";
+std::ostream &StatBase::print(std::ostream &out) const {
+  out << "StatBase{name=\"" << m_name << "\"}";
   return out;
 }
 
@@ -31,6 +31,6 @@ std::ostream &Stat::print(std::ostream &out) const {
  *@return os paramater.
  *Calls  Stat::print() internally;
  * */
-std::ostream &operator<<(std::ostream &os, const Stat &data) {
+std::ostream &operator<<(std::ostream &os, const StatBase &data) {
   return data.print(os);
 }

@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.26.3)
 set(CMAKE_EXPORT_COMPILE_COMMANDS true)
 
 add_library(libRPG
+  statBase.h statBase.cpp
   gameStats.h gameStats.cpp
-  stat.h stat.cpp
   itemBase.h
   itemContainer.h itemContainer.cpp
 )
