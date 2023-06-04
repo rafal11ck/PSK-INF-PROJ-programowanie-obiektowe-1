@@ -20,7 +20,7 @@ GameStats::GameStat::GameStat(const StatBase &statB, id_t id)
  *@return out parameter.
  **/
 std::ostream &GameStats::GameStat::print(std::ostream &out) const {
-  out << "GameStat{id= \"" << m_id << "\", name=\"" << m_name << "\"}";
+  out << "GameStat {id= \"" << m_id << "\", name=\"" << m_name << "\"}";
   return out;
 }
 

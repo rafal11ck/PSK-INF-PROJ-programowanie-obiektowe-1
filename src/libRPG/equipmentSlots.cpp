@@ -1,6 +1,7 @@
 
 #include "equipmentSlots.h"
 #include "equipmentSlotBase.h"
+#include <ostream>
 
 /**
  *@brief Constructor.
@@ -12,5 +13,21 @@ EquipmentSlots::EquipmentSlot::EquipmentSlot(const EquiptmentSlotBase &base,
     : EquiptmentSlotBase(base), m_id(id){};
 
 void EquipmentSlots::addEquipmentSlot(const EquiptmentSlotBase &base) {
-  m_equipmentSlots.push_back({base, m_nextEqupmentSlotId});
+  m_equipmentSlots.push_back({base, m_nextEquipmentSlotId});
+  ++m_nextEquipmentSlotId;
+}
+
+std::ostream &EquipmentSlots::EquipmentSlot::print(std::ostream &os) const {
+  os << "EquipmentSlot {id = \"" << m_id << "\", name: \"" << m_name
+     << R"(", description: ")" << m_description << R"(" })";
+  return os;
+}
+
+/**
+ *@brief Getter.
+ *@return m_equipmentSlots.
+ **/
+const EquipmentSlots::equipmentSlots_t
+EquipmentSlots::getEquipmentSlots() const {
+  return m_equipmentSlots;
 }

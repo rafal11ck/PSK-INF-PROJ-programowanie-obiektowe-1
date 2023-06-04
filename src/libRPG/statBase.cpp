@@ -20,7 +20,7 @@ StatBase::StatBase(std::string name) : m_name(name){};
  *@return out parameter.
  **/
 std::ostream &StatBase::print(std::ostream &out) const {
-  out << "StatBase{name=\"" << m_name << "\"}";
+  out << "StatBase {name=\"" << m_name << "\"}";
   return out;
 }
 

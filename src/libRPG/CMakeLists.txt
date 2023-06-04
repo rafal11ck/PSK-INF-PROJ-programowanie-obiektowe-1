@@ -5,8 +5,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS true)
 add_library(libRPG
   statBase.h statBase.cpp
   gameStats.h gameStats.cpp
-  itemBase.h
-  itemContainer.h itemContainer.cpp
+  equipmentSlotBase.h equipmentSlotBase.cpp
+  equipmentSlots.h equipmentSlots.cpp
 )
 
 add_executable(testLibRPG
