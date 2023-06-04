@@ -7,6 +7,7 @@ add_library(libRPG
   gameStats.h gameStats.cpp
   equipmentSlotBase.h equipmentSlotBase.cpp
   equipmentSlots.h equipmentSlots.cpp
+  basicGameMetadata.h
 )
 
 add_executable(testLibRPG
