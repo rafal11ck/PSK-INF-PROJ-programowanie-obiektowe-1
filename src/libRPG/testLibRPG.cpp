@@ -47,20 +47,17 @@ void testGameMetadata() {
   gdat.addStat("poczytalność");
   gdat.addStat("siła");
   gdat.addStat("maxHealth");
-  for (auto stat : gdat.getStats()) {
-    os << stat << '\n';
-  }
+
   // add equipment slots
   gdat.addEquipmentSlot(EquiptmentSlotBase("noga", "Normalana noga"));
   gdat.addEquipmentSlot(EquiptmentSlotBase("ręka", "Normalna ręka"));
   gdat.addEquipmentSlot(EquiptmentSlotBase("głowa", "Jak sklep"));
 
-  for (auto stat : gdat.getEquipmentSlots()) {
-    os << stat << '\n';
-  }
-  StateBase *state{new StateBase("testStatus", "test")};
-  state->addModifier(StatModifier{gdat.getStats().at(0), 4});
+  StateBase state("Chad", "Is chad");
+  state.addModifier({gdat.getStats().at(0), 5});
   gdat.addState(state);
+
+  os << gdat;
 }
 
 int main() {

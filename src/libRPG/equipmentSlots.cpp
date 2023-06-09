@@ -36,3 +36,12 @@ const EquipmentSlots::equipmentSlots_t
 EquipmentSlots::getEquipmentSlots() const {
   return m_equipmentSlots;
 }
+
+std::ostream &EquipmentSlots::print(std::ostream &os) const {
+  os << "EquipmentSlots {\n";
+  for (auto it : m_equipmentSlots)
+    os << it << '\n';
+  os << "}\n";
+
+  return os;
+}

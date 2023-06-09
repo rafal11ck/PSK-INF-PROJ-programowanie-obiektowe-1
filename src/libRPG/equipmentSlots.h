@@ -27,18 +27,21 @@ public:
     id_t m_id;
   };
 
-public:
   //! Collection type.
   using equipmentSlots_t = std::vector<EquipmentSlot>;
 
-  void addEquipmentSlot(const EquiptmentSlotBase &base);
-  const equipmentSlots_t getEquipmentSlots() const;
-
-protected:
+private:
   //! ID given to next equipable item.
   EquipmentSlot::id_t m_nextEquipmentSlotId{};
   //! container of EquipmentSlot
   equipmentSlots_t m_equipmentSlots;
+
+public:
+  void addEquipmentSlot(const EquiptmentSlotBase &base);
+  const equipmentSlots_t getEquipmentSlots() const;
+
+  virtual std::ostream &print(std::ostream &os) const;
+  friend std::ostream &operator<<(std::ostream &os, const EquipmentSlots &data);
 };
 
 #endif // EQUIPMENTSLOTS_H

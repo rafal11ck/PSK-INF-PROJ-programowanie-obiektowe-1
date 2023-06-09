@@ -14,6 +14,11 @@
  *
  *Stats and equipment slots.
  * */
-class BasicGameMetadata : public GameStats, public EquipmentSlots {};
+class BasicGameMetadata : public GameStats, public EquipmentSlots {
+
+public:
+  virtual std::ostream &print(std::ostream &os) const;
+  friend std::ostream &operator<<(std::ostream &os, BasicGameMetadata &data);
+};
 
 #endif // BASICGAMEMETADATA_H

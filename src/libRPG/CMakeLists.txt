@@ -12,7 +12,7 @@ add_library(libRPG
  gameMetadata.h gameMetadata.cpp
  equipmentSlots.h equipmentSlots.cpp
  equipmentSlotBase.h equipmentSlotBase.cpp
- basicGameMetadata.h
+ basicGameMetadata.h basicGameMetadata.cpp
 )
 
 add_executable(testLibRPG

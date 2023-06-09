@@ -7,6 +7,7 @@
  **/
 
 #include "gameStats.h"
+#include "statBase.h"
 
 /**
  *@brief Repesents stat modification.

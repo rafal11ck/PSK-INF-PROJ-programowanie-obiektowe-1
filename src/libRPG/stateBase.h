@@ -2,6 +2,7 @@
 #define STATEBASE_H
 #include "statModifier.h"
 #include "statModifiers.h"
+#include <ostream>
 #include <string>
 
 /**
@@ -19,6 +20,9 @@ private:
 public:
   StateBase(std::string name, std::string description = "");
   std::string getName() const;
+
+  virtual std::ostream &print(std::ostream &os) const;
+  friend std::ostream &operator<<(std::ostream &os, const StateBase &data);
 };
 
 #endif // STATEBASE_H

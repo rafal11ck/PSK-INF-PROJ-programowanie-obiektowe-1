@@ -23,7 +23,8 @@ private:
   collection_t m_modifiers;
 
 public:
-  virtual void addModifier(StatModifier modifier);
+  void addModifier(StatModifier modifier);
+  const collection_t &getModifiers() const;
 };
 
 #endif // STATMODIFIERS_H

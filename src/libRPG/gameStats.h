@@ -26,7 +26,7 @@ public:
 
     GameStat(const StatBase &statB, id_t id);
 
-  private:
+  protected:
     virtual std::ostream &print(std::ostream &out) const;
 
   private:
@@ -34,20 +34,21 @@ public:
     const id_t m_id;
   };
 
-public:
   //! Container which is used to store stats.
   using gameStats_t = std::vector<GameStat>;
-
-  void addStat(std::string statName);
-  const gameStats_t &getStats();
 
 private:
   //! Id of next stat when it's added by addStat().
   GameStat::id_t m_nextStatId{};
-
-protected:
   //! Stats that exist in the game.
   gameStats_t m_stats;
+
+public:
+  void addStat(std::string statName);
+  const gameStats_t &getStats() const;
+
+  virtual std::ostream &print(std::ostream &os) const;
+  friend std::ostream &operator<<(std::ostream &os, const GameStats &data);
 };
 
 #endif // GAMESTATS_H
