@@ -36,7 +36,7 @@ public:
 
 protected:
   //! ID given to next equipable item.
-  EquipmentSlot::id_t m_nextEquipmentSlotId;
+  EquipmentSlot::id_t m_nextEquipmentSlotId{};
   //! container of EquipmentSlot
   equipmentSlots_t m_equipmentSlots;
 };

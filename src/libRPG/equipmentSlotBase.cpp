@@ -21,6 +21,14 @@ std::ostream &EquiptmentSlotBase::print(std::ostream &os) const {
   return os;
 }
 
+/**
+ *@brief Extraction operator overlaod
+ *@param os output stream.
+ *@param data class instance to be extracted.
+ *@return os parameter.
+ *
+ *Internally calls print();
+ **/
 std::ostream &operator<<(std::ostream &os, const EquiptmentSlotBase &data) {
   return data.print(os);
 }

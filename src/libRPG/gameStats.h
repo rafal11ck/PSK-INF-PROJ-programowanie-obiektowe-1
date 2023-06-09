@@ -14,7 +14,7 @@
  *@brief Holds collection of Stats. Maintains locally unique ids.
  */
 class GameStats {
-protected:
+public:
   /**
    *@brief
    *Stat repestantion within infromation about game.

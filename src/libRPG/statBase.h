@@ -4,24 +4,26 @@
 
 /**
  *@file
- *Interface.
+ *@brief StatBase Interface.
  **/
 
 /**
- *@brief
- *Represents statistics (types like atack, defense) in game.
+ *@brief Represents statistics (types like atack, defense) in game.
  **/
 class StatBase {
+private:
+  //! Name of stat.
+  std::string m_name;
+
 public:
   StatBase(std::string name);
+
+  virtual const std::string &getName() const;
+
   friend std::ostream &operator<<(std::ostream &os, const StatBase &data);
 
 private:
   virtual std::ostream &print(std::ostream &out) const;
-
-protected:
-  //! Name of stat.
-  std::string m_name;
 };
 
 #endif // GAMESTAT_H

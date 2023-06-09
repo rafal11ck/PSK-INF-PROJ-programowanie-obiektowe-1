@@ -15,6 +15,12 @@
 StatBase::StatBase(std::string name) : m_name(name){};
 
 /**
+ *@brief name getter.
+ *@return name.
+ * */
+const std::string &StatBase::getName() const { return m_name; }
+
+/**
  *@brief Data extraction to stream.
  *@param out Where to print to.
  *@return out parameter.

@@ -12,6 +12,11 @@ EquipmentSlots::EquipmentSlot::EquipmentSlot(const EquiptmentSlotBase &base,
                                              id_t id)
     : EquiptmentSlotBase(base), m_id(id){};
 
+/**
+ *@brief Adds equipment slot.
+ *@param base Slot to add.
+ *
+ * */
 void EquipmentSlots::addEquipmentSlot(const EquiptmentSlotBase &base) {
   m_equipmentSlots.push_back({base, m_nextEquipmentSlotId});
   ++m_nextEquipmentSlotId;
