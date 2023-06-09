@@ -3,6 +3,7 @@
 #include "gameMetadata.h"
 #include "gameStats.h"
 #include "statBase.h"
+#include "statModifier.h"
 #include "stateBase.h"
 #include <iostream>
 #include <ostream>
@@ -57,6 +58,9 @@ void testGameMetadata() {
   for (auto stat : gdat.getEquipmentSlots()) {
     os << stat << '\n';
   }
+  StateBase *state{new StateBase("testStatus", "test")};
+  state->addModifier(StatModifier{gdat.getStats().at(0), 4});
+  gdat.addState(state);
 }
 
 int main() {

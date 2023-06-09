@@ -12,6 +12,8 @@
 
 /**
  *@brief Holds game metadata
+ *
+ *- Stats
  **/
 class GameMetadata : public BasicGameMetadata {
 public:

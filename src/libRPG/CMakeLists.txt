@@ -3,12 +3,16 @@ cmake_minimum_required(VERSION 3.26.3)
 set(CMAKE_EXPORT_COMPILE_COMMANDS true)
 
 add_library(libRPG
-  statBase.h statBase.cpp
-  gameStats.h gameStats.cpp
-  equipmentSlotBase.h equipmentSlotBase.cpp
-  equipmentSlots.h equipmentSlots.cpp
-  basicGameMetadata.h
-  gameMetadata.h gameMetadata.cpp
+ testLibRPG.cpp
+ statModifiers.h statModifiers.cpp
+ statModifier.h statModifier.cpp
+ stateBase.h stateBase.cpp
+ statBase.h statBase.cpp
+ gameStats.h gameStats.cpp
+ gameMetadata.h gameMetadata.cpp
+ equipmentSlots.h equipmentSlots.cpp
+ equipmentSlotBase.h equipmentSlotBase.cpp
+ basicGameMetadata.h
 )
 
 add_executable(testLibRPG
