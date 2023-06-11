@@ -41,6 +41,8 @@ public:
 protected:
   /**
    *@brief id setter.
+   *@param id Id to set.
+   *If id to be set is INVALID_ID this will not be set.
    */
   void setId(id_t id);
 
@@ -53,9 +55,9 @@ public:
 
   /**
    *@brief Sets description.
-   *@param Description to be set.
+   *@param description Description to be set.
    */
-  void setDescription(std::string newDescription);
+  void setDescription(std::string description);
 
   /**
    *@brief name getter.
@@ -68,6 +70,11 @@ public:
    *@return Description.
    **/
   std::string getDescription() const;
+
+  /**
+   *@brief id getter.
+   *@return id.
+   **/
   id_t getId() const;
 };
 
