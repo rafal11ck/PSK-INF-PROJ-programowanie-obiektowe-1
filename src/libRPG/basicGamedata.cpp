@@ -1,6 +1,8 @@
 #include "basicGamedata.hpp"
 #include <exception>
+#include <list>
 #include <string>
+#include <sys/types.h>
 
 /**
  *@file
@@ -26,4 +28,8 @@ std::string BasicGameData::getName() const { return m_name; }
 
 std::string BasicGameData::getDescription() const { return m_description; };
 
-BasicGameData::id_t BasicGameData::getId() const { return m_id; };
+BasicGameData::id_t BasicGameData::getId() const {
+  if (m_id == INVALID_ID)
+    std::__throw_runtime_error("Illegal id");
+  return m_id;
+};

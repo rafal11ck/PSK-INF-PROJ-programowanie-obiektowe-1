@@ -8,14 +8,28 @@
 
 #include "equipmentSlot.hpp"
 #include "stat.hpp"
+#include <exception>
 #include <memory>
+#include <stdexcept>
 #include <vector>
+
+/**
+ *@brief Exception.
+ */
+class exceptionNonExistingId : std::exception {
+public:
+  /**
+   *@brief What.
+   *@returns message.
+   */
+  virtual std::string what();
+};
 
 /**
  *@brief Holds game metadata.
  *
- *It will deallocate Stat and EquipmentSlot added to it so those should not be
- *deallcated manually.
+ *It will deallocate Stat and EquipmentSlot added to it so those should not
+ *be deallcated manually.
  * */
 class GameMetadata {
 public:
@@ -37,6 +51,13 @@ private:
 
 public:
   /**
+   * @brief Destructor
+   *
+   * Deallocates all added equipmentslots and stats.
+   * */
+  ~GameMetadata();
+
+  /**
    *@brief Add given stat.
    *@param stat Stat to add.
    **/
@@ -51,16 +72,33 @@ public:
   /**
    *@brief Getter for Stat based on id.
    *@param id Id of Stat to fetch
-   *@return Stat with given id, or nullptr if not found.
+   *@return Stat with given id.
+   *@throws exceptionNonExistingId When tried to fetch insance with id that
+   *doesn't exist.
    **/
   Stat *getStat(Stat::id_t id) const;
 
   /**
+   *@brief Stats getter.
+   *@return m_stats.
+   **/
+  const statsCollection_t &getStats() const;
+
+  /**
    *@brief Getter for EquipmentSlot based on id.
    *@param id Id of EquipmentSlot to fetch
-   *@return EquipmentSlot with given id, or nullptr if not found.
+   *@return EquipmentSlot with given id.
+   *
+   *@throws exceptionNonExistingId When tried to fetch insance with id that
+   *doesn't exist.
    **/
   EquipmentSlot *getEquipmentSlot(Stat::id_t id) const;
+
+  /**
+   *@brief Equipmentslots getter.
+   *@return Equipment slots
+   **/
+  const equiptmentSlotsCollection_t &getEquipmentSlots() const;
 };
 
 #endif // GAMEMETADATA_HPP_

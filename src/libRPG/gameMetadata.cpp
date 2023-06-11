@@ -1,11 +1,21 @@
 #include "gameMetadata.hpp"
 #include "equipmentSlot.hpp"
+#include <list>
 #include <memory>
 
 /**
  *@file
  *@brief GameMetadata implementation.
  **/
+
+std::string exceptionNonExistingId::what() { return "Not found with given ID"; }
+
+GameMetadata::~GameMetadata() {
+  for (Stat *&it : m_stats)
+    delete it;
+  for (EquipmentSlot *&it : m_equipmentSlots)
+    delete it;
+}
 
 void GameMetadata::addStat(Stat *stat) {
   m_stats.push_back(stat);
@@ -24,7 +34,11 @@ Stat *GameMetadata::getStat(Stat::id_t id) const {
     if (st->m_id == id)
       return st;
   }
-  return nullptr;
+  throw exceptionNonExistingId();
+}
+
+const GameMetadata::statsCollection_t &GameMetadata::getStats() const {
+  return m_stats;
 }
 
 EquipmentSlot *GameMetadata::getEquipmentSlot(Stat::id_t id) const {
@@ -32,5 +46,10 @@ EquipmentSlot *GameMetadata::getEquipmentSlot(Stat::id_t id) const {
     if (eq->m_id == id)
       return eq;
   }
-  return nullptr;
+  throw exceptionNonExistingId();
+}
+
+const GameMetadata::equiptmentSlotsCollection_t &
+GameMetadata::getEquipmentSlots() const {
+  return m_equipmentSlots;
 }

@@ -32,6 +32,7 @@ private:
 public:
   /**
    *@brief Constructor.
+   *@param gameMetadata gameMetadata that instance is about.
    *Associtates instance with gameMetadata.
    **/
   StatModifyingEntity(const GameMetadata &gameMetadata);

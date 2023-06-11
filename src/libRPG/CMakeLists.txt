@@ -6,14 +6,17 @@ add_library(libRPG
   basicGamedata.hpp
   basicGamedata.cpp
   equipmentSlot.hpp
+  equipmentSlot.cpp
   gameMetadata.hpp
   gameMetadata.cpp
-  player.hpp
+  character.hpp
+  character.cpp
   stat.hpp
+  stat.cpp
   statModifyingEntity.hpp
   statModifyingEntity.cpp
 )
 
-#ahdd_executable(testLibRPG
-#  testLibRPG.cpp)
-#target_link_libraries(testLibRPG libRPG)
+
+add_executable(test test.cpp)
+target_link_libraries(test libRPG)
