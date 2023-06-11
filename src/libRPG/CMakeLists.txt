@@ -5,6 +5,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS true)
 add_library(libRPG
   gameMetaData.hpp
   gameMetaData.cpp
+  basicGamedata.hpp
+  #basicGamemetadata.cpp
+  stat.hpp
 )
 
 #ahdd_executable(testLibRPG

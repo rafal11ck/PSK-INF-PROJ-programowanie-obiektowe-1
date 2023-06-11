@@ -1,58 +1,67 @@
 #ifndef GAMEMETADATA_HPP_
 #define GAMEMETADATA_HPP_
 
-#include <limits>
-#include <string>
+/**
+ *@file
+ *@brief GameMetadata interface.
+ **/
+
+#include "equipmentSlot.hpp"
+#include "stat.hpp"
+#include <memory>
 #include <vector>
 
-class GameMetadata;
-
-class BasicGameData {
-  friend GameMetadata;
-
-public:
-  using id_t = long long;
-  static constexpr id_t INVALID_ID{std::numeric_limits<id_t>::min()};
-
-private:
-  id_t m_id{INVALID_ID};
-  std::string m_name;
-  std::string m_description;
-
-public:
-  BasicGameData(std::string name, std::string description = "");
-
-protected:
-  void setId(id_t id);
-
-public:
-  void setName(std::string newName);
-  void setDescription(std::string newDescription);
-
-  std::string getName() const;
-  std::string getDescription() const;
-  id_t getId() const;
-};
-
-class Stat : public BasicGameData {};
-
-class EquipmentSlot : public BasicGameData {
-private:
-};
-
+/**
+ *@brief Holds game metadata.
+ *
+ *It will deallocate Stat and EquipmentSlot added to it so those should not be
+ *deallcated manually.
+ * */
 class GameMetadata {
 public:
-  using statsCollection_t = std::vector<Stat *>;
-  using equiptmentSlotsCollection_t = std::vector<EquipmentSlot *>;
+  //! Type used for stats collection.
+  using statsCollection_t = std::vector<std::unique_ptr<Stat>>;
+  //! Type used for stroing equpment slots collection.
+  using equiptmentSlotsCollection_t =
+      std::vector<std::unique_ptr<EquipmentSlot>>;
 
+private:
+  //! Collection of Stat added.
   statsCollection_t m_stats;
+  //! Collection of EquipmentSlot added.
   equiptmentSlotsCollection_t m_equipmentSlots;
 
-  BasicGameData::id_t m_nextStatId;
-  BasicGameData::id_t m_nextEquipmentSlotId;
+  /// Id that will be set to the next Stat added.
+  BasicGameData::id_t m_nextStatId{1};
+  /// Id that will be set to the next EquipmentSlot added.
+  BasicGameData::id_t m_nextEquipmentSlotId{1};
 
+public:
+  /**
+   *@brief Add given stat.
+   *@param stat Stat to add.
+   **/
   void addStat(Stat *stat);
-  void addEquipmentSlot(Stat *stat);
+
+  /**
+   *@brief Add given EquipmentSlot.
+   *@param eqSlot EquipmentSlot to add..
+   **/
+  void addEquipmentSlot(EquipmentSlot *eqSlot);
+
+  /**
+   *@brief Getter for Stat based on id.
+   *@param id Id of Stat to fetch
+   *@return Stat with given id, or nullptr if not found.
+   **/
+  Stat *getStat(Stat::id_t id);
+
+  /**
+   *@brief Getter for EquipmentSlot based on id.
+   *@param id Id of EquipmentSlot to fetch
+   *@return EquipmentSlot with given id, or nullptr if not found.
+   **/
+  EquipmentSlot *getEquipmentSlot(Stat::id_t id);
 };
 
 #endif // GAMEMETADATA_HPP_
