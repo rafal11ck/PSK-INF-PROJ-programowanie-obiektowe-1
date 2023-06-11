@@ -20,10 +20,9 @@
 class GameMetadata {
 public:
   //! Type used for stats collection.
-  using statsCollection_t = std::vector<std::unique_ptr<Stat>>;
+  using statsCollection_t = std::vector<Stat *>;
   //! Type used for stroing equpment slots collection.
-  using equiptmentSlotsCollection_t =
-      std::vector<std::unique_ptr<EquipmentSlot>>;
+  using equiptmentSlotsCollection_t = std::vector<EquipmentSlot *>;
 
 private:
   //! Collection of Stat added.
@@ -54,14 +53,14 @@ public:
    *@param id Id of Stat to fetch
    *@return Stat with given id, or nullptr if not found.
    **/
-  Stat *getStat(Stat::id_t id);
+  Stat *getStat(Stat::id_t id) const;
 
   /**
    *@brief Getter for EquipmentSlot based on id.
    *@param id Id of EquipmentSlot to fetch
    *@return EquipmentSlot with given id, or nullptr if not found.
    **/
-  EquipmentSlot *getEquipmentSlot(Stat::id_t id);
+  EquipmentSlot *getEquipmentSlot(Stat::id_t id) const;
 };
 
 #endif // GAMEMETADATA_HPP_
