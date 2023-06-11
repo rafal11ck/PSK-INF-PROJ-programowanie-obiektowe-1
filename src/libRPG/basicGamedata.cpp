@@ -2,6 +2,11 @@
 #include <exception>
 #include <string>
 
+/**
+ *@file
+ *@brief BasicGameData implementation.
+ **/
+
 BasicGameData::BasicGameData(std::string name, std::string description)
     : m_name(name), m_description(description) {}
 

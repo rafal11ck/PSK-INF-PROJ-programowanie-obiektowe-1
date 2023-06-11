@@ -2,6 +2,11 @@
 #include "equipmentSlot.hpp"
 #include <memory>
 
+/**
+ *@file
+ *@brief GameMetadata implementation.
+ **/
+
 void GameMetadata::addStat(Stat *stat) {
   m_stats.push_back(stat);
   stat->setId(m_nextStatId);
