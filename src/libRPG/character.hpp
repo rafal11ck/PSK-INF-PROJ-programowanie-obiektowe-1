@@ -1,6 +1,8 @@
 
+#ifndef CHARACTER_HPP_
+#define CHARACTER_HPP_
 
-#include "gameMetaData.hpp"
+#include "gameMetadata.hpp"
 #include "stat.hpp"
 #include <map>
 #include <vector>
@@ -28,5 +30,18 @@ public:
    **/
   Character(GameMetadata &gameMetadata);
 
-  Stat::value_t getBaseStatValue(Stat::id_t id);
+  /**
+   *@brief Base statistics value getter.
+   *@param id of stat to get base value of.
+   **/
+  Stat::value_t getBaseStatValue(Stat::id_t id) const;
+
+  /**
+   *@brief Sets base stat value.
+   *@param statId Id to set value of.
+   *@param val Value to set.
+   **/
+  void setStatValue(Stat::id_t statId, Stat::value_t val);
 };
+
+#endif // CHARACTER_HPP_

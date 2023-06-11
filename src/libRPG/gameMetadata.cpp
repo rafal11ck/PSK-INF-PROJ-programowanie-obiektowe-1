@@ -1,4 +1,4 @@
-#include "gameMetaData.hpp"
+#include "gameMetadata.hpp"
 #include "equipmentSlot.hpp"
 #include <memory>
 
