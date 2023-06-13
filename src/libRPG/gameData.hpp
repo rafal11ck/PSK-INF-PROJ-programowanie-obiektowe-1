@@ -1,29 +1,42 @@
 #ifndef GAMEDATA_HPP_
 #define GAMEDATA_HPP_
 
+/**
+ *@file
+ *@brief GameData interface.
+ * */
 #include "gameMetadata.hpp"
+#include "item.hpp"
+#include <map>
+#include <set>
 
 /**
- *@brief Holds data about game and game metadata.
- *
+ *@brief On top of what GameMetadata does. Holds items cataloge.
  *@see GameMetadata
  */
-class GameData {
+class GameData : public GameMetadata {
+public:
+  //! Collection type.
+  using itemcollection_t = std::set<Item *>;
+
 private:
-  //! Game metadata.
-  GameMetadata m_gameMetadata;
+  //! Collection of items that exist in game collection.
+  itemcollection_t m_items;
+  //! Id That will be given to next item added.
+  Item::id_t m_nextItemId{1};
 
 public:
   /**
-   *@brief Game metadata getter.
-   *@return ::m_gameMetadata.
+   *@brief Adds item to collection.
+   *@param item Item to add.
    **/
-  GameMetadata &getMetadata();
+  void addItem(Item *item);
 
   /**
-   *@copydoc getMetadata()
+   *@brief Getter.
+   *@return ::m_items.
    **/
-  const GameMetadata &getMetadata() const;
+  const itemcollection_t &getItems() const;
 };
 
 #endif // HAMEDATA_HPP_

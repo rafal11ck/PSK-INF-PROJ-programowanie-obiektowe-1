@@ -6,20 +6,19 @@
  *@brief Item interface.
  * */
 
-#include "basicGamedata.hpp"
 #include "equipmentSlot.hpp"
+#include "gameMetadata.hpp"
 #include "stat.hpp"
 #include "statModifyingEntity.hpp"
 #include <set>
-#include <sys/types.h>
 
 /**
  *@brief Represents an item in game.
  *
- *
  *Should be used in GameData.
  **/
 class Item : public StatModifyingEntity, public BasicGameData {
+
 public:
   //! Collection.
   using equipableSlots_t = std::set<EquipmentSlot::id_t>;
@@ -28,13 +27,39 @@ private:
   //! Which equipment slots given item can be put on.
   equipableSlots_t m_equipableOn;
 
+public:
   /**
-   *@brief Make item equipable.
+   *@brief Constructor.
+   *@param gameMetadata Metadata that instance will use.
+   *@param name Name of item.
+   *@param description description.
+   */
+  Item(const GameMetadata &gameMetadata, std::string name,
+       std::string description = "");
+
+  /**
+   *@brief Make item equipable on given equipment slot.
    *@param equipmentSlotId On which EquipmentSlot should it be equipable.
+   *
+   *If it is already equipable on that slot nothing will be done.
    **/
-  void setEquipableOn(EquipmentSlot::id_t equipmentSlotId) {
-    m_equipableOn.insert(equipmentSlotId);
-  }
+  void setEquipableOn(EquipmentSlot::id_t equipmentSlotId);
+
+  /**
+   *@brief Makes item no longer possible to equip onto given slot.
+   *@param equipmentSlotId equipment slot id that item will be no longer
+   *equipable on.
+   *
+   *If it is already not equipable on that slot nothing will happen.
+   **/
+  void unsetEquipableOn(EquipmentSlot::id_t equipmentSlotId);
+
+  /**
+   *@brief Checks whenever Item is equipable in given slot id.
+   *@param equipmentSlotId Slot to check.
+   *@returns True if Item is equipable in enquiered slot. False if it is not.
+   **/
+  bool isEquipableOn(EquipmentSlot::id_t equipmentSlotId);
 };
 
 #endif // ITEM_HPP_

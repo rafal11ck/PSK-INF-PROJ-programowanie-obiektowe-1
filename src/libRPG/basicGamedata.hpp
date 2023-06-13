@@ -14,6 +14,7 @@
  * */
 class BasicGameData {
   friend class GameMetadata;
+  friend class GameData;
 
 public:
   //! Type used for ids.

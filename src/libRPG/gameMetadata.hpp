@@ -75,7 +75,7 @@ public:
    *@brief Getter for Stat based on id.
    *@param id Id of Stat to fetch
    *@return Stat with given id.
-   *@throws exceptionNonExistingId When tried to fetch insance with id that
+   *@throw exceptionNonExistingId When tried to fetch insance with id that
    *doesn't exist.
    **/
   Stat *getStat(Stat::id_t id) const;
