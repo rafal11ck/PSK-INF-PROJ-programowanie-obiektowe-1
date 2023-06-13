@@ -7,6 +7,7 @@
  * */
 
 #include "basicGamedata.hpp"
+
 /**
  *@brief Equipment slot repesentation.
  **/
