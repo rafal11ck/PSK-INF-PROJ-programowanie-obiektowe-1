@@ -5,12 +5,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS true)
 add_library(libRPG
   basicGamedata.hpp
   basicGamedata.cpp
+  character.hpp
+  character.cpp
   equipmentSlot.hpp
   equipmentSlot.cpp
   gameMetadata.hpp
   gameMetadata.cpp
-  character.hpp
-  character.cpp
+  item.hpp
   stat.hpp
   stat.cpp
   statModifyingEntity.hpp

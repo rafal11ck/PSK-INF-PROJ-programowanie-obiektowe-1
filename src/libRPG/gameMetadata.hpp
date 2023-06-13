@@ -26,7 +26,9 @@ public:
 };
 
 /**
- *@brief Holds game metadata.
+ *@brief Holds game metadata. That is what statistics exist and what equipable
+ *slots exist.
+ *
  *
  *It will deallocate Stat and EquipmentSlot added to it so those should not
  *be deallcated manually.

@@ -14,6 +14,9 @@
 
 /**
  *@brief Repesents collection of stat modifiers.
+ *
+ *It modifies Stats so it needs access to information about what stats do
+ *exist.
  * */
 class StatModifyingEntity {
 public:
@@ -27,7 +30,7 @@ private:
   modifersCollection_t m_modifiers;
 
   //! Game Metadata.
-  const GameMetadata &m_gameData;
+  const GameMetadata &m_gameMetadata;
 
 public:
   /**
@@ -43,5 +46,17 @@ public:
    *@param by Modify value.
    **/
   void addModifier(Stat::id_t, Stat::value_t by);
+
+  /**
+   *@brief GameMeatadata getter.
+   *@return GemeMetadata used by instance.
+   **/
+  const GameMetadata &getGameMetadata() const;
+
+  /**
+   *@brief Modifiers getter.
+   *@return ::m_modifiers
+   * */
+  const modifersCollection_t &getModifiers() const;
 };
 #endif // STATMODYFINGENTITY_HPP_
