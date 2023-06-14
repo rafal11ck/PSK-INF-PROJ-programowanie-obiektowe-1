@@ -9,9 +9,12 @@ add_library(libRPG
   character.cpp
   equipmentSlot.hpp
   equipmentSlot.cpp
+  gameData.hpp
+  gameData.cpp
   gameMetadata.hpp
   gameMetadata.cpp
   item.hpp
+  item.cpp
   stat.hpp
   stat.cpp
   statModifyingEntity.hpp

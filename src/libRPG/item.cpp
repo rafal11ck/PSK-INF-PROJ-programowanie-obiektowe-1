@@ -3,19 +3,21 @@
  *@brief Item implementation.
  **/
 
-#include "item.hpp"
+#include "gameData.hpp"
 
-Item::Item(const GameMetadata &gameMetadata, std::string name,
-           std::string description)
-    : StatModifyingEntity(gameMetadata), BasicGameData(name, description) {}
+Item::Item(GameData *gameData, std::string name, std::string description)
+    : StatModifyingEntity(gameData), BasicGameData(name, description) {
+  //!@note It invokes GameData::addItem().
+  gameData->addItem(this);
+}
 
 void Item::setEquipableOn(EquipmentSlot::id_t equipmentSlotId) {
-  getGameMetadata().getEquipmentSlot(equipmentSlotId);
+  getGameMetadata()->getEquipmentSlot(equipmentSlotId);
   m_equipableOn.insert(equipmentSlotId);
 }
 
 void Item::unsetEquipableOn(EquipmentSlot::id_t equipmentSlotId) {
-  getGameMetadata().getEquipmentSlot(equipmentSlotId);
+  getGameMetadata()->getEquipmentSlot(equipmentSlotId);
   m_equipableOn.erase(equipmentSlotId);
 }
 

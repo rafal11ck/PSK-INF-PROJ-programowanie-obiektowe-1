@@ -30,7 +30,7 @@ private:
   modifersCollection_t m_modifiers;
 
   //! Game Metadata.
-  const GameMetadata &m_gameMetadata;
+  const GameMetadata *const m_gameMetadata;
 
 public:
   /**
@@ -38,7 +38,7 @@ public:
    *@param gameMetadata gameMetadata that instance is about.
    *Associtates instance with gameMetadata.
    **/
-  StatModifyingEntity(const GameMetadata &gameMetadata);
+  StatModifyingEntity(const GameMetadata *const gameMetadata);
 
   /**
    *@brief Add modification of stats.
@@ -51,7 +51,7 @@ public:
    *@brief GameMeatadata getter.
    *@return GemeMetadata used by instance.
    **/
-  const GameMetadata &getGameMetadata() const;
+  const GameMetadata *const getGameMetadata() const;
 
   /**
    *@brief Modifiers getter.

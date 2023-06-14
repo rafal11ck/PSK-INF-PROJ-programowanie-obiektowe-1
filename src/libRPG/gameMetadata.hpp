@@ -62,12 +62,14 @@ public:
   /**
    *@brief Add given stat.
    *@param stat Stat to add.
-   **/
+   *@snippet test.cpp Adding stats to GameMetadata
+   ***/
   void addStat(Stat *stat);
 
   /**
    *@brief Add given EquipmentSlot.
    *@param eqSlot EquipmentSlot to add..
+   *@snippet test.cpp Adding EquipmentSlot to GameMetadata
    **/
   void addEquipmentSlot(EquipmentSlot *eqSlot);
 

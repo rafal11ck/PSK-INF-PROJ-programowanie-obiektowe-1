@@ -29,6 +29,8 @@ public:
   /**
    *@brief Adds item to collection.
    *@param item Item to add.
+   *
+   *@note It does not validate item.
    **/
   void addItem(Item *item);
 
@@ -39,4 +41,4 @@ public:
   const itemcollection_t &getItems() const;
 };
 
-#endif // HAMEDATA_HPP_
+#endif // GAMEDATA_HPP_

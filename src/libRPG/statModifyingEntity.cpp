@@ -5,17 +5,22 @@
 
 #include "statModifyingEntity.hpp"
 
-StatModifyingEntity::StatModifyingEntity(const GameMetadata &gameMetadata)
+StatModifyingEntity::StatModifyingEntity(const GameMetadata *gameMetadata)
     : m_gameMetadata(gameMetadata) {}
 
 //! @todo Check if entity has modifier of that Stat already.
 void StatModifyingEntity::addModifier(Stat::id_t statModifed,
                                       Stat::value_t by) {
 
-  getGameMetadata().getStat(statModifed);
+  getGameMetadata()->getStat(statModifed);
   m_modifiers.push_back({statModifed, by});
 }
 
-const GameMetadata &StatModifyingEntity::getGameMetadata() const {
+const GameMetadata *const StatModifyingEntity::getGameMetadata() const {
   return m_gameMetadata;
+}
+
+const StatModifyingEntity::modifersCollection_t &
+StatModifyingEntity::getModifiers() const {
+  return m_modifiers;
 }

@@ -7,10 +7,10 @@
  * */
 
 #include "equipmentSlot.hpp"
-#include "gameMetadata.hpp"
-#include "stat.hpp"
 #include "statModifyingEntity.hpp"
 #include <set>
+
+class GameData;
 
 /**
  *@brief Represents an item in game.
@@ -30,12 +30,13 @@ private:
 public:
   /**
    *@brief Constructor.
-   *@param gameMetadata Metadata that instance will use.
+   *@param gameData GameData to which item is added.
    *@param name Name of item.
    *@param description description.
+   *
+   *@snippet test.cpp Adding Item to GameData
    */
-  Item(const GameMetadata &gameMetadata, std::string name,
-       std::string description = "");
+  Item(GameData *gameData, std::string name, std::string description = "");
 
   /**
    *@brief Make item equipable on given equipment slot.
