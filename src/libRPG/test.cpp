@@ -1,62 +1,58 @@
 
 #include "character.hpp"
 #include "gameData.hpp"
+#include "gameMetadata.hpp"
 #include <iostream>
 
-GameData *testGameData() {
-  GameData *gmd{new GameData()};
-  // adding stats
-  {
-    gmd->addStat(new Stat("strength", "just strength"));
-    //![Adding stats to GameMetadata]
-    gmd->addStat(new Stat("chadness", "Only chads have this"));
-    gmd->addStat(new Stat("speed"));
-    //![Adding stats to GameMetadata]
+void addStats(GameMetadata *gameMetadata) {
+  //![Adding stats to GameMetadata]
+  gameMetadata->addStat(new Stat("strength", "just strength"));
+  gameMetadata->addStat(new Stat("chadness", "Only chads have this"));
+  gameMetadata->addStat(new Stat("speed"));
+  //![Adding stats to GameMetadata]
 
-    for (const auto &it : gmd->getStats()) {
+  for (const auto &it : gameMetadata->getStats()) {
+    std::cout << it->getId() << '\t' << it->getName() << '\t'
+              << it->getDescription() << '\n';
+  }
+}
+
+void addEqSltos(GameMetadata *gameMetadata) {
+  {
+    //![Adding EquipmentSlot to GameMetadata]
+    gameMetadata->addEquipmentSlot(new EquipmentSlot("Leg", "Leg is leg"));
+    gameMetadata->addEquipmentSlot(new EquipmentSlot("Head"));
+    gameMetadata->addEquipmentSlot(
+        new EquipmentSlot("Hand", "For gloves or smth"));
+    //![Adding EquipmentSlot to GameMetadata]
+
+    for (const auto &it : gameMetadata->getEquipmentSlots()) {
       std::cout << it->getId() << '\t' << it->getName() << '\t'
                 << it->getDescription() << '\n';
     }
   }
+}
 
-  // adding eq slots
-  {
-    //![Adding EquipmentSlot to GameMetadata]
-    gmd->addEquipmentSlot(new EquipmentSlot("Leg", "Leg is leg"));
-    gmd->addEquipmentSlot(new EquipmentSlot("Head"));
-    gmd->addEquipmentSlot(new EquipmentSlot("Hand", "For gloves or smth"));
-    //![Adding EquipmentSlot to GameMetadata]
+void addItems(GameData *gameData) {
+  //![Adding Item to GameData]
+  Item *item{new Item(gameData, "Stick")};
+  item->addModifier(1, 3);
+  item->setEquipableOn(3);
 
-    for (const auto &it : gmd->getEquipmentSlots()) {
-      std::cout << it->getId() << '\t' << it->getName() << '\t'
-                << it->getDescription() << '\n';
+  Item *item2{new Item(gameData, "Sunglasses", "They protect from sun")};
+  item2->addModifier(2, 100);
+  item2->setEquipableOn(2);
+  //![Adding Item to GameData]
+
+  for (const Item *it : gameData->getItems()) {
+    std::cout << it->getId() << '\t' << it->getName() << '\t'
+              << it->getDescription() << '\t';
+    for (const Item::modifier_t &mod : it->getModifiers()) {
+      std::cout << "Mod:\t" << gameData->getStat(mod.first)->getName() << " by "
+                << mod.second;
     }
+    std::cout << '\n';
   }
-
-  // adding items.
-  {
-    //![Adding Item to GameData]
-    Item *item{new Item(gmd, "Stick")};
-    item->addModifier(1, 3);
-    item->setEquipableOn(3);
-
-    Item *item2{new Item(gmd, "Sunglasses", "They protect from sun")};
-    item2->addModifier(2, 100);
-    item2->setEquipableOn(2);
-    //![Adding Item to GameData]
-
-    for (const Item *it : gmd->getItems()) {
-      std::cout << it->getId() << '\t' << it->getName() << '\t'
-                << it->getDescription() << '\t';
-      for (const Item::modifier_t &mod : it->getModifiers()) {
-        std::cout << "Mod:\t" << gmd->getStat(mod.first)->getName() << " by "
-                  << mod.second;
-      }
-      std::cout << '\n';
-    }
-  }
-
-  return gmd;
 }
 
 Character *testCharacter(const GameData *gd) {
@@ -80,9 +76,14 @@ Character *testCharacter(const GameData *gd) {
 };
 
 int main() {
-  GameData *gmd{testGameData()};
+  GameData *gd{new GameData};
+  addStats(gd);
+  addEqSltos(gd);
+  addItems(gd);
 
-  delete testCharacter(gmd);
+  Character *character{testCharacter(gd)};
 
-  delete gmd;
+  delete character;
+
+  delete gd;
 }

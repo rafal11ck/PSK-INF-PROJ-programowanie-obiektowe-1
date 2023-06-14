@@ -27,7 +27,12 @@ private:
 
 public:
   /**
-   *@brief Adds item to collection.
+   *@brief Desctructor
+   **/
+  ~GameData();
+
+  /**
+   *@brief Adds item to collection and sets it's id.
    *@param item Item to add.
    *
    *@note It does not validate item.
