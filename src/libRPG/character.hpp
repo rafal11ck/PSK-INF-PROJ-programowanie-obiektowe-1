@@ -8,7 +8,9 @@
  **/
 
 #include "gameData.hpp"
+#include "item.hpp"
 #include "stat.hpp"
+#include <list>
 #include <map>
 #include <vector>
 
@@ -22,6 +24,9 @@
 class Character {
   //! Type used for repesentation of base character stats.
   using statValues_t = std::map<Stat::id_t, Stat::value_t>;
+
+  //! Used for inventory as <Item, qunatity possed by Character>
+  using inventory_t = std::map<Item *, long long>;
 
   //! Game data used by character.
   const GameData &m_gameData;
