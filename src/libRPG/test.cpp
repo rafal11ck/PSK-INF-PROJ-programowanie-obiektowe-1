@@ -1,7 +1,6 @@
 
 #include "character.hpp"
 #include "gameData.hpp"
-#include "item.hpp"
 #include <iostream>
 
 GameData *testGameData() {
@@ -43,7 +42,7 @@ GameData *testGameData() {
 
     Item *item2{new Item(gmd, "Sunglasses", "They protect from sun")};
     item2->addModifier(2, 100);
-    item2->setEquipableOn(3);
+    item2->setEquipableOn(2);
     //![Adding Item to GameData]
 
     for (const Item *it : gmd->getItems()) {
