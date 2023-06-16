@@ -2,9 +2,11 @@
 #include "character.hpp"
 #include "gameData.hpp"
 #include "gameMetadata.hpp"
+#include <algorithm>
 #include <iostream>
 
 void addStats(GameMetadata *gameMetadata) {
+  std::cout << std::string(15, '-') << "addStats\n";
   //![Adding stats to GameMetadata]
   gameMetadata->addStat(new Stat("strength", "just strength"));
   gameMetadata->addStat(new Stat("chadness", "Only chads have this"));
@@ -17,7 +19,8 @@ void addStats(GameMetadata *gameMetadata) {
   }
 }
 
-void addEqSltos(GameMetadata *gameMetadata) {
+void addEqSlots(GameMetadata *gameMetadata) {
+  std::cout << std::string(15, '-') << "addEqSlots\n";
   {
     //![Adding EquipmentSlot to GameMetadata]
     gameMetadata->addEquipmentSlot(new EquipmentSlot("Leg", "Leg is leg"));
@@ -34,6 +37,7 @@ void addEqSltos(GameMetadata *gameMetadata) {
 }
 
 void addItems(GameData *gameData) {
+  std::cout << std::string(15, '-') << "addItems\n";
   //![Adding Item to GameData]
   Item *item{new Item(gameData, "Stick")};
   item->addModifier(1, 3);
@@ -56,6 +60,7 @@ void addItems(GameData *gameData) {
 }
 
 Character *testCharacter(const GameData *gd) {
+  std::cout << std::string(15, '-') << "testCharacter\n";
   Character *character{new Character(gd)};
 
   character->setBaseStatValue(1, 4);
@@ -76,16 +81,31 @@ Character *testCharacter(const GameData *gd) {
 };
 
 void testInventory(Character *character) {
-  character->getGameData()->getItems();
+  //![adding Item to Character inventory]
+  // extract item from gamedata accessed from character.
+  const Item *itemToAdd{character->getGameData()->getItem(1)};
+  character->addItem(itemToAdd);
+  character->addItem(itemToAdd);
+  character->addItem(character->getGameData()->getItem(1));
+  //![adding Item to Character inventory]
+
+  std::cout << "character inventory\n";
+  for (const auto &it : character->getInventory()) {
+    const Item *item{it.first};
+    std::cout << "item id: " << item->getId() << " \tQuantity: " << it.second
+              << '\t' << item->getName() << '\n';
+  }
 }
 
 int main() {
   GameData *gd{new GameData};
   addStats(gd);
-  addEqSltos(gd);
+  addEqSlots(gd);
   addItems(gd);
 
   Character *character{testCharacter(gd)};
+
+  testInventory(character);
 
   delete character;
 

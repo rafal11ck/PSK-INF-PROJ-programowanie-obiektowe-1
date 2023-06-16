@@ -4,7 +4,11 @@
  **/
 
 #include "gameData.hpp"
-#include <list>
+#include "basicGamedata.hpp"
+#include "gameMetadata.hpp"
+#include <algorithm>
+
+std::string excpetionGameDataMissmatch::what() { return "Game data missmatch"; }
 
 GameData::~GameData() {
   for (auto it : m_items) {
@@ -23,8 +27,19 @@ void GameData::addItem(Item *item) {
     std::__throw_runtime_error("Item was not added to GameData");
 }
 
-GameData::itemcollection_t &GameData::getItems() { return m_items; }
+const GameData::itemcollection_t &GameData::getItems() const { return m_items; }
 
-const GameData::itemcollection_t &GameData::getItems() const {
-  return getItems();
+const Item *const GameData::getItem(Item::id_t id) const {
+  auto lookup{std::find_if(getItems().begin(), getItems().end(),
+                           [=](const Item *const it) { return it->isId(id); })};
+
+  if (lookup == getItems().end())
+    //!@throw exceptionNonExistingId Tried to get item that does not exist.
+    throw exceptionNonExistingId();
+  return *lookup;
+}
+
+void GameData::validateDataIntegrity(const Item &item) const {
+  if (this != item.getGameMetadata())
+    throw excpetionGameDataMissmatch();
 }

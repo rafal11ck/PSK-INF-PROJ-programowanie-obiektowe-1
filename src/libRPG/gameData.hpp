@@ -7,8 +7,21 @@
  * */
 #include "gameMetadata.hpp"
 #include "item.hpp"
+#include <exception>
 #include <map>
 #include <set>
+
+/**
+ *@brief Thrown when attempted to do operation that requires 2 objects to use
+ *common GameData but different were used.
+ * */
+class excpetionGameDataMissmatch : public std::exception {
+  /**
+   *@brief what
+   *@returns message
+   **/
+  std::string what();
+};
 
 /**
  *@brief On top of what GameMetadata does. Holds items cataloge.
@@ -42,13 +55,16 @@ public:
   /**
    *@brief Getter.
    *@return ::m_items.
-   * */
-  itemcollection_t &getItems();
+   */
+  const itemcollection_t &getItems() const;
 
   /**
-   *@copydoc getItems()
+   *@brief Get Item.
+   *@param id Id of Item to fetch.
    **/
-  const itemcollection_t &getItems() const;
+  const Item *const getItem(Item::id_t id) const;
+
+  void validateDataIntegrity(const Item &item) const;
 };
 
 #endif // GAMEDATA_HPP_
