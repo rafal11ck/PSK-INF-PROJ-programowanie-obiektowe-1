@@ -75,6 +75,10 @@ Character *testCharacter(const GameData *gd) {
   return character;
 };
 
+void testInventory(Character *character) {
+  character->getGameData()->getItems()
+}
+
 int main() {
   GameData *gd{new GameData};
   addStats(gd);
