@@ -61,9 +61,14 @@ public:
   /**
    *@brief Get Item.
    *@param id Id of Item to fetch.
+   *@return Item with given id.
    **/
   const Item *const getItem(Item::id_t id) const;
 
+  /**
+   *@brief Checks if Item uses this gameData as it's Item::m_id.
+   *@param item Item to check.
+   **/
   void validateDataIntegrity(const Item &item) const;
 };
 

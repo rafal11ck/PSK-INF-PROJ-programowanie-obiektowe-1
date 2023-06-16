@@ -1,3 +1,8 @@
+/**
+ * @file test.cpp
+ * @example{lineno}
+ * @brief GameData and related classes test.
+ **/
 
 #include "character.hpp"
 #include "gameData.hpp"

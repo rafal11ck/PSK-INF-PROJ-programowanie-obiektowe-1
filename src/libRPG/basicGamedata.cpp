@@ -23,7 +23,9 @@ void BasicGameData::setId(id_t id) {
 }
 
 void BasicGameData::validateIntegrity() const {
+  //! Checks if id is INVALID_ID.
   if (m_id == INVALID_ID) {
+    //! @throw exceptionIllegalId id is illegal.
     throw exceptionIllegalId();
   }
 }

@@ -15,6 +15,9 @@
  *@see BasicGameData::INVALID_ID
  * */
 class exceptionIllegalId : public std::exception {
+  /**@brief What.
+   *@return Info string.
+   */
   std::string what();
 };
 
@@ -56,6 +59,9 @@ protected:
    */
   void setId(id_t id);
 
+  /**
+   *@brief Check itegrity of data.
+   **/
   void validateIntegrity() const;
 
 public:

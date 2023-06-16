@@ -41,5 +41,7 @@ const Item *const GameData::getItem(Item::id_t id) const {
 
 void GameData::validateDataIntegrity(const Item &item) const {
   if (this != item.getGameMetadata())
+    //!@throw excpetionGameDataMissmatch When item does not use this as it's
+    //! game metadata.
     throw excpetionGameDataMissmatch();
 }
