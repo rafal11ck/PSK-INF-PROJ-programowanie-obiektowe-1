@@ -26,10 +26,10 @@ class Character {
   using statValues_t = std::map<Stat::id_t, Stat::value_t>;
 
   //! Used for inventory as <Item, qunatity possed by Character>
-  using inventory_t = std::map<Item *, long long>;
+  using inventory_t = std::map<const Item *const, long long>;
 
   //! Game data used by character.
-  const GameData &m_gameData;
+  const GameData *const m_gameData;
 
   //! Base values of stats.
   statValues_t m_baseStatValues;
@@ -39,7 +39,7 @@ public:
    *@brief constructor
    *@param gameData Used by character.
    **/
-  Character(const GameData &gameData);
+  Character(const GameData *const gameData);
 
   /**
    *@brief Sets base stat value.
@@ -62,7 +62,7 @@ public:
    *@brief Gets game data  used by Character.
    *@return ::m_gameData.
    **/
-  const GameData &getGameData() const;
+  const GameData *const getGameData() const;
 };
 
 #endif // CHARACTER_HPP_

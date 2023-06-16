@@ -42,6 +42,11 @@ public:
   /**
    *@brief Getter.
    *@return ::m_items.
+   * */
+  itemcollection_t &getItems();
+
+  /**
+   *@copydoc getItems()
    **/
   const itemcollection_t &getItems() const;
 };

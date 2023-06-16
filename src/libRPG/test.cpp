@@ -56,7 +56,7 @@ void addItems(GameData *gameData) {
 }
 
 Character *testCharacter(const GameData *gd) {
-  Character *character{new Character(*gd)};
+  Character *character{new Character(gd)};
 
   character->setBaseStatValue(1, 4);
 
@@ -67,7 +67,7 @@ Character *testCharacter(const GameData *gd) {
     std::cerr << e.what() << '\n';
   }
 
-  for (auto stat : character->getGameData().getStats()) {
+  for (auto stat : character->getGameData()->getStats()) {
     std::cout << stat->getName() << " =\t"
               << character->getBaseStatValue(stat->getId()) << '\n';
   }

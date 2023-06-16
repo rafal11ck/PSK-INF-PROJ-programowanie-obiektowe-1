@@ -17,8 +17,12 @@ void GameData::addItem(Item *item) {
   ++m_nextItemId;
   auto res{m_items.insert(item)};
   if (!res.second)
-    //! @todo change excpetion class
+    //! @todo change excpetion to it's own exception class
     std::__throw_runtime_error("Item was not added to GameData");
 }
 
-const GameData::itemcollection_t &GameData::getItems() const { return m_items; }
+GameData::itemcollection_t &GameData::getItems() { return m_items; }
+
+const GameData::itemcollection_t &GameData::getItems() const {
+  return getItems();
+}
