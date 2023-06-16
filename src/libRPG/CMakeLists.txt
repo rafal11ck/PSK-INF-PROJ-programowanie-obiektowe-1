@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.26.3)
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS true)
-
 add_library(libRPG
   basicGamedata.hpp
   basicGamedata.cpp
@@ -21,6 +19,4 @@ add_library(libRPG
   statModifyingEntity.cpp
 )
 
-
-add_executable(test test.cpp)
-target_link_libraries(test libRPG)
+add_subdirectory(tests)

@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.26.3)
 
 project("Kalkulator statystyk postaci na potrzeby gry RPG")
 
+set(EXPORT_COMPILE_COMMANDS ON)
+
+include_directories(libRPG)
 add_subdirectory(libRPG)
 
 # first we can indicate the documentation build as an option and set it to ON by default

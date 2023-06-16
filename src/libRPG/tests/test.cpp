@@ -81,15 +81,15 @@ Character *testCharacter(const GameData *gd) {
 };
 
 void testInventory(Character *character) {
+  std::cout << std::string(15, '-') << "testInventory\n";
   //![adding Item to Character inventory]
   // extract item from gamedata accessed from character.
   const Item *itemToAdd{character->getGameData()->getItem(1)};
   character->addItem(itemToAdd);
   character->addItem(itemToAdd);
-  character->addItem(character->getGameData()->getItem(1));
+  character->addItem(character->getGameData()->getItem(2));
   //![adding Item to Character inventory]
 
-  std::cout << "character inventory\n";
   for (const auto &it : character->getInventory()) {
     const Item *item{it.first};
     std::cout << "item id: " << item->getId() << " \tQuantity: " << it.second
