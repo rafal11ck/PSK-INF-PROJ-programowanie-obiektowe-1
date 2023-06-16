@@ -76,7 +76,7 @@ Character *testCharacter(const GameData *gd) {
 };
 
 void testInventory(Character *character) {
-  character->getGameData()->getItems()
+  character->getGameData()->getItems();
 }
 
 int main() {

@@ -18,6 +18,8 @@ void GameData::addItem(Item *item) {
   auto res{m_items.insert(item)};
   if (!res.second)
     //! @todo change excpetion to it's own exception class
+    //!@throws std::__throw_runtime_error "Item was not added to GameData"
+    //! When item was not added to the game some reason.
     std::__throw_runtime_error("Item was not added to GameData");
 }
 
