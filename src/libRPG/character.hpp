@@ -51,7 +51,8 @@ public:
   /**
    *@brief constructor
    *@param gameData Used by character.
-   **/
+   *@snippet test.cpp Character
+   */
   Character(const GameData *const gameData);
 
   /**

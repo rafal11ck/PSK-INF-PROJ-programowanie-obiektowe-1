@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.26.3)
 
 project("Kalkulator statystyk postaci na potrzeby gry RPG")
 
-set(EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include_directories(libRPG)
 add_subdirectory(libRPG)

@@ -3,13 +3,15 @@
  * @example{lineno}
  * @brief GameData and related classes test.
  **/
-
 #include "character.hpp"
 #include "gameData.hpp"
 #include "gameMetadata.hpp"
 #include <algorithm>
 #include <iostream>
 
+/**
+ *@param gameMetadata Where satas are added to.
+ **/
 void addStats(GameMetadata *gameMetadata) {
   std::cout << std::string(15, '-') << "addStats\n";
   //![Adding stats to GameMetadata]
@@ -24,6 +26,9 @@ void addStats(GameMetadata *gameMetadata) {
   }
 }
 
+/**
+ *@param gameMetadata Where equipment slots are added to.
+ **/
 void addEqSlots(GameMetadata *gameMetadata) {
   std::cout << std::string(15, '-') << "addEqSlots\n";
   {
@@ -41,6 +46,9 @@ void addEqSlots(GameMetadata *gameMetadata) {
   }
 }
 
+/**
+ *@param gameData Where items are added to.
+ **/
 void addItems(GameData *gameData) {
   std::cout << std::string(15, '-') << "addItems\n";
   //![Adding Item to GameData]
@@ -64,11 +72,16 @@ void addItems(GameData *gameData) {
   }
 }
 
+/**
+ *@param gd GameData that will be used by character.
+ *@return character.
+ **/
 Character *testCharacter(const GameData *gd) {
   std::cout << std::string(15, '-') << "testCharacter\n";
+  //![Character]
   Character *character{new Character(gd)};
-
   character->setBaseStatValue(1, 4);
+  //![Character]
 
   try {
     character->setBaseStatValue(1000, 64356);
@@ -85,6 +98,9 @@ Character *testCharacter(const GameData *gd) {
   return character;
 };
 
+/**
+ *@param character to whom items will be added.
+ **/
 void testInventory(Character *character) {
   std::cout << std::string(15, '-') << "testInventory\n";
   //![adding Item to Character inventory]
