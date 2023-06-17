@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.26.3)
+cmake_minimum_required(VERSION 3.22.1)
 
 add_library(libRPG
   basicGamedata.hpp
