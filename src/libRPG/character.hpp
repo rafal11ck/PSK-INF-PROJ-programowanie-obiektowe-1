@@ -12,6 +12,7 @@
 #include "gameMetadata.hpp"
 #include "item.hpp"
 #include "stat.hpp"
+#include "statModifyingEntity.hpp"
 #include <exception>
 #include <list>
 #include <map>
@@ -60,6 +61,8 @@ class excpetionEquipmentSlotIllegalUsage : public std::exception {
 class Character {
   //! Type used for repesentation of base character stats.
   using statValues_t = std::map<Stat::id_t, Stat::value_t>;
+  //! Stat value contrubitors collection.
+  using statValueContrubitors_t = std::vector<const StatModifyingEntity *>;
 
   //! Quantity of Items.
   using itemQuantity_t = long long;
@@ -114,9 +117,17 @@ public:
   Stat::value_t getBaseStatValue(Stat::id_t id) const;
 
   /**
-   *@brief Gets final stat value
+   *@brief Gets collection of stat modyfiers
+   *@param id Id of stat.
+   *@return Contrubuitors to Stat value.
    **/
+  statValueContrubitors_t getStatValueContrubitors(Stat::id_t id) const;
 
+  /**
+   *@brief Gets final stat value
+   *@param id Id of stat to get value of.
+   *@return Value of stat.
+   **/
   Stat::value_t getStatValue(Stat::id_t id) const;
   /**
    *@brief Gets game data  used by Character.
@@ -132,23 +143,6 @@ public:
    *@snippet test.cpp adding Item to Character inventory
    **/
   void addItem(const Item *const item, itemQuantity_t quantity = 1);
-
-  /**
-   *@brief Purges Item from Character inventory.
-   *@param id id of Item to purge.
-   **/
-  void purgeItem(Item::id_t id);
-
-  /**
-   *@copybrief purgeItem()
-   *@param item Item to purge.
-   **/
-  void purgeItem(const Item *const item);
-  /**
-   *@copybrief purgeItem()
-   *@param it Iteartor to Item in m_inventory that has to be purged.
-   **/
-  void purgeItem(inventory_t::iterator it);
 
   /**
    *@brief Inventory getter

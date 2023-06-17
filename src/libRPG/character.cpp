@@ -2,6 +2,7 @@
 #include "equipmentSlot.hpp"
 #include "gameData.hpp"
 #include "item.hpp"
+#include "statModifyingEntity.hpp"
 #include <algorithm>
 
 /**
@@ -40,10 +41,24 @@ Stat::value_t Character::getBaseStatValue(Stat::id_t id) const {
   return 0;
 }
 
+Character::statValueContrubitors_t
+Character::getStatValueContrubitors(Stat::id_t id) const {
+  statValueContrubitors_t result{};
+  for (auto it : m_equipment) {
+    const StatModifyingEntity *modifier{it.second};
+    // if (modifier->getModifierValue(id))
+  }
+
+  return result;
+}
+
 const GameData *const Character::getGameData() const { return m_gameData; }
 
 void Character::addItem(const Item *const item, itemQuantity_t quantity) {
   validateDataIntegrity(*item);
+  if (quantity == 0)
+    return;
+
   auto temp{m_inventory.insert({item, quantity})};
 
   const bool didAdd{temp.second};
@@ -53,19 +68,10 @@ void Character::addItem(const Item *const item, itemQuantity_t quantity) {
     auto itemIterator{temp.first};
     itemQuantity_t &itemQuantity{itemIterator->second};
     itemQuantity += quantity;
-    //! @note If after alternation quantity would be 0 or negative it's
-    //! purged from inventory.
-    if (itemQuantity <= 0) {
-      purgeItem(itemIterator->first);
-    }
+    //! @todo make it remove item from inventory if quantity would go below or
+    //! equal 0.
   }
 }
-
-void Character::purgeItem(Item::id_t id){};
-
-void Character::purgeItem(const Item *const item) {}
-
-void Character::purgeItem(inventory_t::iterator it) { m_inventory.erase(it); }
 
 const Character::inventory_t &Character::getInventory() const {
   return m_inventory;

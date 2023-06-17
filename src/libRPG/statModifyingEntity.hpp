@@ -10,7 +10,6 @@
 #include "basicGamedata.hpp"
 #include "gameMetadata.hpp"
 #include "stat.hpp"
-#include <utility>
 #include <vector>
 
 /**
@@ -52,6 +51,12 @@ public:
    **/
   void addModifier(Stat::id_t, Stat::value_t by);
 
+  /**
+   *@brief Modifier value getter.
+   *@param id Id of stat to get value of modifier of.
+   *@return Modifier value or 0 if Instance does not modify stat asked.
+   * */
+  Stat::value_t getmodifierValue(Stat::id_t id);
   /**
    *@brief GameMeatadata getter.
    *@return GemeMetadata used by instance.
