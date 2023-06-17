@@ -7,8 +7,10 @@
 #include "equipmentSlot.hpp"
 #include "gameData.hpp"
 #include "gameMetadata.hpp"
+#include "state.hpp"
 #include <algorithm>
 #include <iostream>
+#include <string>
 
 /**
  *@param gameMetadata Where satas are added to.
@@ -74,6 +76,29 @@ void addItems(GameData *gameData) {
       std::cout << it->getGameMetadata()->getEquipmentSlot(slot)->getName()
                 << '\t';
     std::cout << '\n';
+  }
+}
+
+void addStates(GameData *gameData) {
+  std::cout << std::string(15, '-') << "addStates\n";
+  //![Adding State to GameData]
+  State *inz{new State(gameData, "inż")};
+  inz->addModifier(1, 2);
+  inz->addModifier(2, 1);
+  //![Adding State to GameData]
+
+  State *kampania{new State(gameData, "Kampania wrześniowa")};
+  kampania->addModifier(3, -60);
+
+  // Printing
+  for (const State *it : gameData->getStates()) {
+    std::cout << it->getId() << '\t' << it->getName()
+              << "\tDesc: " << it->getDescription() << '\n';
+    for (const Item::modifier_t &mod : it->getModifiers()) {
+      std::cout << std::string(3, '>') << '\t'
+                << gameData->getStat(mod.first)->getName() << "\t" << mod.second
+                << '\n';
+    }
   }
 }
 
@@ -144,16 +169,51 @@ void testEquipment(Character *character) {
   }
 }
 
+void testCharacterStates(Character *character) {
+  std::cout << std::string(15, '-') << "testCharacterStates\n";
+  character->addState(*character->getGameData()->getStates().begin());
+
+  //![Character add state]
+  // Getting State which has id 2.
+  const State *state{character->getGameData()->getState(2)};
+  // Adding State to character.
+  character->addState(state);
+  //![Character add state]
+
+  // printing
+  for (const State *it : character->getStates()) {
+    std::cout << "State id: " << it->getId() << '\t' << "Name:\t"
+              << it->getName() << '\n';
+  }
+}
+
+void testStatGetters(const Character *character) {
+  std::cout << std::string(15, '-') << "testStatGetters\n";
+
+  for (Stat *stat : character->getGameData()->getStats()) {
+    std::cout << stat->getName() << '\t'
+              << character->getStatValue(stat->getId()) << '\n';
+
+    for (auto it2 : character->getStatValueContrubitors(stat->getId())) {
+      std::cout << std::string(3, '>') << '\t' << it2->getName() << " ("
+                << it2->getModifierValue(stat->getId()) << ")\n";
+    }
+  }
+}
+
 int main() {
   GameData *gd{new GameData};
   addStats(gd);
   addEqSlots(gd);
   addItems(gd);
+  addStates(gd);
 
   Character *character{testCharacter(gd)};
-
   testInventory(character);
   testEquipment(character);
+  testCharacterStates(character);
+
+  testStatGetters(character);
 
   delete character;
 

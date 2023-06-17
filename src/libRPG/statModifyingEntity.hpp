@@ -56,7 +56,8 @@ public:
    *@param id Id of stat to get value of modifier of.
    *@return Modifier value or 0 if Instance does not modify stat asked.
    * */
-  Stat::value_t getmodifierValue(Stat::id_t id);
+  Stat::value_t getModifierValue(Stat::id_t id) const;
+
   /**
    *@brief GameMeatadata getter.
    *@return GemeMetadata used by instance.

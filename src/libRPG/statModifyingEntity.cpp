@@ -20,7 +20,7 @@ void StatModifyingEntity::addModifier(Stat::id_t statModifed,
   m_modifiers.push_back({statModifed, by});
 }
 
-Stat::value_t StatModifyingEntity::getmodifierValue(Stat::id_t id) {
+Stat::value_t StatModifyingEntity::getModifierValue(Stat::id_t id) const {
   auto lookup{
       std::find_if(m_modifiers.begin(), m_modifiers.end(),
                    [=](const modifier_t mod) { return mod.first == id; })};

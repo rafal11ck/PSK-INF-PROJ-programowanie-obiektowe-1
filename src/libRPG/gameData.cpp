@@ -14,6 +14,10 @@ GameData::~GameData() {
   for (auto it : m_items) {
     delete it;
   }
+
+  for (auto it : m_states) {
+    delete it;
+  }
 }
 
 void GameData::addItem(Item *item) {
@@ -35,14 +39,36 @@ const Item *const GameData::getItem(Item::id_t id) const {
                            [=](const Item *const it) { return it->isId(id); })};
 
   if (lookup == getItems().end())
-    //!@throw exceptionNonExistingId Tried to get item that does not exist.
     throw exceptionNonExistingId();
   return *lookup;
 }
 
-void GameData::validateDataIntegrity(const Item &item) const {
-  if (this != item.getGameMetadata())
-    //!@throw excpetionGameDataMissmatch When item does not use insnace on which
-    //! this method is called as it's game metadata.
+void GameData::validateDataIntegrity(const StatModifyingEntity &entity) const {
+  if (this != entity.getGameMetadata())
+    //!@throw excpetionGameDataMissmatch When entity does not use this as it's
+    //! game data.
     throw excpetionGameDataMissmatch();
+}
+
+void GameData::addState(State *state) {
+  validateDataIntegrity(*state);
+  m_states.insert(state);
+  state->setId(m_nextStateId);
+  ++m_nextStateId;
+}
+
+const GameData::stateCollcetion_t &GameData::getStates() const {
+  return m_states;
+}
+
+const State *const GameData::getState(State::id_t id) const {
+  auto lookup{
+      std::find_if(m_states.begin(), m_states.end(),
+                   [=](const State *const state) { return state->isId(id); })};
+
+  if (lookup == m_states.end()) {
+    throw exceptionNonExistingId();
+  }
+
+  return *lookup;
 }
