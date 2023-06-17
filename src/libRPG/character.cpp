@@ -1,16 +1,31 @@
 #include "character.hpp"
+#include "equipmentSlot.hpp"
 #include "gameData.hpp"
+#include "item.hpp"
+#include <algorithm>
 
 /**
  *@file
  *@brief Character implementation.
  **/
 
+std::string exceptionEquipmentSlotOccupied::what() {
+  return "tried to perform operation on occupied equipment slot";
+}
+
+std::string exceptionEquipmentSlotUnused::what() {
+  return "Tried to extract data from unused slot";
+}
+
+std::string excpetionEquipmentSlotIllegalUsage ::what() {
+  return "Illegal equipment slot usage";
+}
+
 void Character::validateDataIntegrity(const Item &item) const {
   getGameData()->validateDataIntegrity(item);
 }
 
-Character::Character(const GameData *const gameData) : m_gameData(gameData) {}
+Character::Character(GameData *gameData) : m_gameData(gameData) {}
 
 void Character::setBaseStatValue(Stat::id_t statId, Stat::value_t val) {
   m_gameData->getStat(statId);
@@ -54,4 +69,43 @@ void Character::purgeItem(inventory_t::iterator it) { m_inventory.erase(it); }
 
 const Character::inventory_t &Character::getInventory() const {
   return m_inventory;
+}
+
+const Character::equipment_t &Character::getEquipment() const {
+  return m_equipment;
+}
+
+bool Character::isEquipmentSlotUsed(EquipmentSlot::id_t eqSlotId) const {
+  bool result{m_equipment.find(getGameData()->getEquipmentSlot(eqSlotId)) !=
+              m_equipment.end()};
+  return result;
+}
+
+const Item *const
+Character::getEquipedItem(const EquipmentSlot *const eqSlot) const {
+  equipment_t::const_iterator r{getEquipment().find(eqSlot)};
+  if (r == getEquipment().end())
+    throw exceptionEquipmentSlotUnused();
+  return r->second;
+}
+
+const Item *const Character::getEquipedItem(EquipmentSlot::id_t slotId) const {
+  const EquipmentSlot *const eqSlot{getGameData()->getEquipmentSlot(slotId)};
+  return getEquipedItem(eqSlot);
+}
+
+void Character::equipItem(const Item *const item, EquipmentSlot::id_t eqSlot) {
+  validateDataIntegrity(*item);
+  // check if item can even be equiped into that slot.
+  if (!item->isEquipableOn(eqSlot))
+    throw excpetionEquipmentSlotIllegalUsage();
+
+  // check if desired slot is occupied.
+  if (isEquipmentSlotUsed(eqSlot))
+    throw exceptionEquipmentSlotOccupied();
+
+  // get slot pointer as it's used for internal equipment infromation.
+  const EquipmentSlot *const eqSlotPtr{getGameData()->getEquipmentSlot(eqSlot)};
+
+  m_equipment.insert({eqSlotPtr, item});
 }

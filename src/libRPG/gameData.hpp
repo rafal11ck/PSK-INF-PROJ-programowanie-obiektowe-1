@@ -66,7 +66,7 @@ public:
   const Item *const getItem(Item::id_t id) const;
 
   /**
-   *@brief Checks if Item uses this gameData as it's Item::m_id.
+   *@brief Checks if Item uses this GameData insnace as it's metadata.
    *@param item Item to check.
    **/
   void validateDataIntegrity(const Item &item) const;

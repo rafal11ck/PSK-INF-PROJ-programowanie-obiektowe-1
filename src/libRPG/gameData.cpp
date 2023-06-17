@@ -17,11 +17,12 @@ GameData::~GameData() {
 }
 
 void GameData::addItem(Item *item) {
+  validateDataIntegrity(*item);
   item->setId(m_nextItemId);
   ++m_nextItemId;
   auto res{m_items.insert(item)};
   if (!res.second)
-    //! @todo change excpetion to it's own exception class
+    //!@todo LOW change excpetion to it's own exception class
     //!@throws std::__throw_runtime_error "Item was not added to GameData"
     //! When item was not added to the game some reason.
     std::__throw_runtime_error("Item was not added to GameData");
@@ -41,7 +42,7 @@ const Item *const GameData::getItem(Item::id_t id) const {
 
 void GameData::validateDataIntegrity(const Item &item) const {
   if (this != item.getGameMetadata())
-    //!@throw excpetionGameDataMissmatch When item does not use this as it's
-    //! game metadata.
+    //!@throw excpetionGameDataMissmatch When item does not use insnace on which
+    //! this method is called as it's game metadata.
     throw excpetionGameDataMissmatch();
 }

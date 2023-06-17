@@ -7,12 +7,48 @@
  *@brief Character interface.
  **/
 
+#include "equipmentSlot.hpp"
 #include "gameData.hpp"
+#include "gameMetadata.hpp"
 #include "item.hpp"
 #include "stat.hpp"
+#include <exception>
 #include <list>
 #include <map>
 #include <vector>
+
+/**
+ *@brief Tried to perform operation on occupied already slot.
+ **/
+class exceptionEquipmentSlotOccupied : public std::exception {
+  /**
+   *@brief What.
+   *@returns Message.
+   **/
+  std::string what();
+};
+
+/**
+ *@brief Tried to extract data from unused slot.
+ */
+class exceptionEquipmentSlotUnused : public std::exception {
+  /**
+   *@brief What.
+   *@returns Message.
+   **/
+  std::string what();
+};
+
+/**
+ * @brief Tried to put stuff where it is not suppsoed to go.
+ */
+class excpetionEquipmentSlotIllegalUsage : public std::exception {
+  /**
+   *@brief What.
+   *@returns Message.
+   **/
+  std::string what();
+};
 
 /**
  *@brief Represents character.
@@ -31,12 +67,17 @@ class Character {
   //! Used for inventory as <Item, qunatity possed by Character>
   using inventory_t = std::map<const Item *const, itemQuantity_t>;
 
+  //! Used to store equiped items of character.
+  using equipment_t = std::map<const EquipmentSlot *const, const Item *const>;
+
   //! Game data used by character.
   const GameData *const m_gameData;
   //! Base values of stats.
   statValues_t m_baseStatValues;
   //! Inventorty
   inventory_t m_inventory;
+  //! Equiped Items
+  equipment_t m_equipment;
 
 private:
   /**
@@ -53,7 +94,7 @@ public:
    *@param gameData Used by character.
    *@snippet test.cpp Character
    */
-  Character(const GameData *const gameData);
+  Character(GameData *gameData);
 
   /**
    *@brief Sets base stat value.
@@ -109,6 +150,58 @@ public:
    *@return m_inventory
    **/
   const inventory_t &getInventory() const;
+
+  /**
+   *@brief equipment getter
+   *@return m_equipment
+   **/
+  const equipment_t &getEquipment() const;
+
+  /**
+   *@brief Check if slot is used
+   *@param eqSlotId id of eq slot to check.
+   *@return True if slot is used. False if it is not used.
+   * */
+  bool isEquipmentSlotUsed(EquipmentSlot::id_t eqSlotId) const;
+
+private:
+  /**
+   *@brief Get item equiped in given slot.
+   *@param eqSlot EquipmentSlot to get equiped item of.
+   *@throw exceptionEquipmentSlotUnused When trying to get equiped item of
+   *unused slot.
+   *@return Equiped item.
+   **/
+  const Item *const getEquipedItem(const EquipmentSlot *const eqSlot) const;
+
+public:
+  /**
+   *@copybrief getEquipedItem()
+   *@param slotId EquipmentSlot to get equiped item of.
+   *@return Equiped item.
+   **/
+  const Item *const getEquipedItem(EquipmentSlot::id_t slotId) const;
+
+  /**
+   *@brief Equip item into eqSlot.
+   *@param item Item to equip.
+   *@param eqSlot Where to equip it to.
+   *
+   *@note It does not check whenever Character has item in invnetory.
+   *
+   *@throw excpetionEquipmentSlotIllegalUsage When attempting to equip item into
+   *slot that it can not be equiped to.
+   *@throw exceptionEquipmentSlotOccupied When attempting to equip item into
+   *already occupied slot;
+   *
+   *@warning If moving Item from inventory to equipment(as if it was take out of
+   *inventory and put on by Character). Removal of Item should be performed
+   *after this method call. If it's removed before and exception is thrown Item
+   *would have been removed from inventory and not be equiped.
+   *
+   *@snippet test.cpp Item equiping
+   **/
+  void equipItem(const Item *const item, EquipmentSlot::id_t eqSlot);
 };
 
 #endif // CHARACTER_HPP_

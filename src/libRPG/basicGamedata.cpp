@@ -21,7 +21,6 @@ void BasicGameData::setId(id_t id) {
     return;
   m_id = id;
 }
-
 void BasicGameData::validateIntegrity() const {
   //! Checks if id is INVALID_ID.
   if (m_id == INVALID_ID) {
@@ -40,10 +39,11 @@ std::string BasicGameData::getName() const { return m_name; }
 
 std::string BasicGameData::getDescription() const { return m_description; };
 
-//! @todo Change exception type
 BasicGameData::id_t BasicGameData::getId() const {
   if (m_id == INVALID_ID)
-    std::__throw_runtime_error("Illegal id");
+    //!@throw exceptionIllegalId When tred to get id of instance that has
+    //! BasicGameData::INVALID_ID.
+    throw exceptionIllegalId();
   return m_id;
 };
 

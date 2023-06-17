@@ -60,7 +60,13 @@ public:
    *@param equipmentSlotId Slot to check.
    *@returns True if Item is equipable in enquiered slot. False if it is not.
    **/
-  bool isEquipableOn(EquipmentSlot::id_t equipmentSlotId);
+  bool isEquipableOn(EquipmentSlot::id_t equipmentSlotId) const;
+
+  /**
+   *@brief Get equipable slots.
+   *@return m_equipableOn.
+   **/
+  const equipableSlots_t &getEquipableSlots() const;
 };
 
 #endif // ITEM_HPP_

@@ -4,6 +4,7 @@
  * @brief GameData and related classes test.
  **/
 #include "character.hpp"
+#include "equipmentSlot.hpp"
 #include "gameData.hpp"
 #include "gameMetadata.hpp"
 #include <algorithm>
@@ -62,12 +63,16 @@ void addItems(GameData *gameData) {
   //![Adding Item to GameData]
 
   for (const Item *it : gameData->getItems()) {
-    std::cout << it->getId() << '\t' << it->getName() << '\t'
-              << it->getDescription() << '\t';
+    std::cout << it->getId() << '\t' << it->getName()
+              << "\tDesc: " << it->getDescription() << '\t';
     for (const Item::modifier_t &mod : it->getModifiers()) {
       std::cout << "Mod:\t" << gameData->getStat(mod.first)->getName() << " by "
                 << mod.second;
     }
+    std::cout << "\tEquipable on: ";
+    for (auto slot : it->getEquipableSlots())
+      std::cout << it->getGameMetadata()->getEquipmentSlot(slot)->getName()
+                << '\t';
     std::cout << '\n';
   }
 }
@@ -76,7 +81,7 @@ void addItems(GameData *gameData) {
  *@param gd GameData that will be used by character.
  *@return character.
  **/
-Character *testCharacter(const GameData *gd) {
+Character *testCharacter(GameData *gd) {
   std::cout << std::string(15, '-') << "testCharacter\n";
   //![Character]
   Character *character{new Character(gd)};
@@ -118,6 +123,26 @@ void testInventory(Character *character) {
   }
 }
 
+void testEquipment(Character *character) {
+  std::cout << std::string(15, '-') << "testEquipment\n";
+
+  //![Item equiping]
+  // Item to equip.
+  const Item *item{character->getGameData()->getItem(2)};
+  // Slot where to equip that item into.
+  EquipmentSlot::id_t slot{*item->getEquipableSlots().begin()};
+  // Optional checking if Character has that item in inventory should be here.
+  character->equipItem(item, slot);
+  // Optional removal of item from Inventory.
+  //![Item equiping]
+
+  std::cout << "Equiped Items\n";
+  for (const std::pair<const EquipmentSlot *const, const Item *const> &it :
+       character->getEquipment()) {
+    std::cout << it.first->getName() << ": \t" << it.second->getName() << '\n';
+  }
+}
+
 int main() {
   GameData *gd{new GameData};
   addStats(gd);
@@ -127,6 +152,7 @@ int main() {
   Character *character{testCharacter(gd)};
 
   testInventory(character);
+  testEquipment(character);
 
   delete character;
 
