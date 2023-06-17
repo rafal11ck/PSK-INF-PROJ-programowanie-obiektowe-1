@@ -15,6 +15,8 @@ add_library(libRPG
   item.cpp
   stat.hpp
   stat.cpp
+  state.cpp
+  state.hpp
   statModifyingEntity.hpp
   statModifyingEntity.cpp
 )

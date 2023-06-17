@@ -7,6 +7,7 @@
  * */
 #include "gameMetadata.hpp"
 #include "item.hpp"
+#include "state.hpp"
 #include <exception>
 #include <map>
 #include <set>
@@ -29,14 +30,22 @@ class excpetionGameDataMissmatch : public std::exception {
  */
 class GameData : public GameMetadata {
 public:
-  //! Collection type.
+  //! Collection used to hold items.
   using itemcollection_t = std::set<Item *>;
+
+  //! Colection used to hold states.
+  using stateCollcetion_t = std::set<State *>;
 
 private:
   //! Collection of items that exist in game collection.
   itemcollection_t m_items;
-  //! Id That will be given to next item added.
+  //! Id that will be given to next item added.
   Item::id_t m_nextItemId{1};
+
+  //! Collection of states that exist in game.
+  stateCollcetion_t m_states;
+  //! Id that will be given to next state added.
+  State::id_t m_nextStateId{1};
 
 public:
   /**
@@ -67,9 +76,22 @@ public:
 
   /**
    *@brief Checks if Item uses this GameData insnace as it's metadata.
-   *@param item Item to check.
+   *@param entity Entity to check.
    **/
-  void validateDataIntegrity(const Item &item) const;
+  void validateDataIntegrity(const StatModifyingEntity &entity) const;
+
+  /**
+   *@brief Adds State to collection and sets it's id.
+   *@param state State to add.
+   *@snippet test.cpp Adding State to GameData
+   * */
+  void addState(State *state);
+
+  /**
+   *@brief States getter
+   *@return m_states
+   **/
+  const stateCollcetion_t &getStates() const;
 };
 
 #endif // GAMEDATA_HPP_

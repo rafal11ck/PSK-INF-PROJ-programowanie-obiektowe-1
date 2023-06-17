@@ -13,6 +13,7 @@
 #include "item.hpp"
 #include "stat.hpp"
 #include "statModifyingEntity.hpp"
+#include "state.hpp"
 #include <exception>
 #include <list>
 #include <map>
@@ -73,23 +74,28 @@ class Character {
   //! Used to store equiped items of character.
   using equipment_t = std::map<const EquipmentSlot *const, const Item *const>;
 
+  //! Used to store sates affecting Character.
+  using states_t = std::set<const State *>;
+
   //! Game data used by character.
   const GameData *const m_gameData;
   //! Base values of stats.
   statValues_t m_baseStatValues;
-  //! Inventorty
+  //! Inventorty.
   inventory_t m_inventory;
-  //! Equiped Items
+  //! Equiped Items.
   equipment_t m_equipment;
+  //! States affecting Character.
+  states_t m_states;
 
 private:
   /**
    * @brief Validate data integrty.
-   * @param item Item to validate agints.
+   * @param entity Entity to validate agints.
    * @throw excpetionGameDataMissmatch When Character and item do not use same
    * GameData.
    * */
-  void validateDataIntegrity(const Item &item) const;
+  void validateDataIntegrity(const StatModifyingEntity &entity) const;
 
 public:
   /**
@@ -115,6 +121,21 @@ public:
    *class invariant.
    **/
   Stat::value_t getBaseStatValue(Stat::id_t id) const;
+
+  /**
+   *@brief Gets collection of stat modyfiers caused by states.
+   *@param id Id of stat.
+   *@return Contrubuitors to Stat value.
+   **/
+  statValueContrubitors_t getStatValueStatesContrubitors(Stat::id_t id) const;
+
+  /**
+   *@brief Gets collection of stat modyfiers caused by equipment.
+   *@param id Id of stat.
+   *@return Contrubuitors to Stat value.
+   **/
+  statValueContrubitors_t
+  getStatValueEquipmentContrubitors(Stat::id_t id) const;
 
   /**
    *@brief Gets collection of stat modyfiers
@@ -201,6 +222,17 @@ public:
    *@snippet test.cpp Item equiping
    **/
   void equipItem(const Item *const item, EquipmentSlot::id_t eqSlot);
-};
 
+  /**
+   *@brief Adds State to the Character.
+   *@param state State to add.
+   **/
+  void addState(const State *state);
+
+  /**
+   *@brief States getter
+   *@return m_states
+   **/
+  const states_t &getStates() const;
+};
 #endif // CHARACTER_HPP_

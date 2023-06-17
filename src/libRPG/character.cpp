@@ -23,8 +23,8 @@ std::string excpetionEquipmentSlotIllegalUsage ::what() {
   return "Illegal equipment slot usage";
 }
 
-void Character::validateDataIntegrity(const Item &item) const {
-  getGameData()->validateDataIntegrity(item);
+void Character::validateDataIntegrity(const StatModifyingEntity &entity) const {
+  getGameData()->validateDataIntegrity(entity);
 }
 
 Character::Character(GameData *gameData) : m_gameData(gameData) {}
@@ -43,7 +43,19 @@ Stat::value_t Character::getBaseStatValue(Stat::id_t id) const {
 }
 
 Character::statValueContrubitors_t
-Character::getStatValueContrubitors(Stat::id_t id) const {
+Character::getStatValueStatesContrubitors(Stat::id_t id) const {
+  statValueContrubitors_t result{};
+  for (auto it : m_states) {
+    Stat::value_t modv{it->getModifierValue(id)};
+    // if it modifies stat add it to result.
+    if (modv != 0)
+      result.push_back(it);
+  }
+  return result;
+}
+
+Character::statValueContrubitors_t
+Character::getStatValueEquipmentContrubitors(Stat::id_t id) const {
   statValueContrubitors_t result{};
   // For each equipment piece
   for (auto it : m_equipment) {
@@ -54,6 +66,18 @@ Character::getStatValueContrubitors(Stat::id_t id) const {
     if (modv != 0)
       result.push_back(modifier);
   }
+  return result;
+}
+
+Character::statValueContrubitors_t
+Character::getStatValueContrubitors(Stat::id_t id) const {
+  statValueContrubitors_t result{};
+  auto temp{getStatValueEquipmentContrubitors(id)};
+  // equipment contribs.
+  result.insert(result.end(), temp.begin(), temp.end());
+  temp = getStatValueStatesContrubitors(id);
+  // states contribs.
+  result.insert(result.end(), temp.begin(), temp.end());
 
   return result;
 }
@@ -132,3 +156,10 @@ void Character::equipItem(const Item *const item, EquipmentSlot::id_t eqSlot) {
 
   m_equipment.insert({eqSlotPtr, item});
 }
+
+void Character::addState(const State *state) {
+  validateDataIntegrity(*state);
+  m_states.insert(state);
+}
+
+const Character::states_t &Character::getStates() const { return m_states; }
