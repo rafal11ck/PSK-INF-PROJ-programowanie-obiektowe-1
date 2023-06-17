@@ -87,10 +87,8 @@ void addStates(GameData *gameData) {
   inz->addModifier(2, 1);
   //![Adding State to GameData]
 
-  State *drHab{new State(gameData, "Dr hab", "Doktor habilitowany")};
-  drHab->addModifier(1, 10);
-  drHab->addModifier(2, 5);
-  drHab->addModifier(3, 50);
+  State *kampania{new State(gameData, "Kampania wrześniowa")};
+  kampania->addModifier(3, -60);
 
   // Printing
   for (const State *it : gameData->getStates()) {
@@ -174,6 +172,13 @@ void testEquipment(Character *character) {
 void testCharacterStates(Character *character) {
   std::cout << std::string(15, '-') << "testCharacterStates\n";
   character->addState(*character->getGameData()->getStates().begin());
+
+  //![Character add state]
+  // Getting State which has id 2.
+  const State *state{character->getGameData()->getState(2)};
+  // Adding State to character.
+  character->addState(state);
+  //![Character add state]
 
   // printing
   for (const State *it : character->getStates()) {

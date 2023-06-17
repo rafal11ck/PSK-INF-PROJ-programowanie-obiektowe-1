@@ -226,6 +226,8 @@ public:
   /**
    *@brief Adds State to the Character.
    *@param state State to add.
+   *
+   *@snippet test.cpp Character add state
    **/
   void addState(const State *state);
 

@@ -39,7 +39,6 @@ const Item *const GameData::getItem(Item::id_t id) const {
                            [=](const Item *const it) { return it->isId(id); })};
 
   if (lookup == getItems().end())
-    //!@throw exceptionNonExistingId Tried to get item that does not exist.
     throw exceptionNonExistingId();
   return *lookup;
 }
@@ -60,4 +59,16 @@ void GameData::addState(State *state) {
 
 const GameData::stateCollcetion_t &GameData::getStates() const {
   return m_states;
+}
+
+const State *const GameData::getState(State::id_t id) const {
+  auto lookup{
+      std::find_if(m_states.begin(), m_states.end(),
+                   [=](const State *const state) { return state->isId(id); })};
+
+  if (lookup == m_states.end()) {
+    throw exceptionNonExistingId();
+  }
+
+  return *lookup;
 }

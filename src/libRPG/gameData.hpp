@@ -71,6 +71,8 @@ public:
    *@brief Get Item.
    *@param id Id of Item to fetch.
    *@return Item with given id.
+   *
+   *@throw exceptionNonExistingId Tried to get item that does not exist.
    **/
   const Item *const getItem(Item::id_t id) const;
 
@@ -92,6 +94,14 @@ public:
    *@return m_states
    **/
   const stateCollcetion_t &getStates() const;
-};
 
+  /**
+   *@brief State getter.
+   *@param id Id of State to get.
+   *@return state with id asked.
+   *
+   *@throw exceptionNonExistingId Tried to get State that does not exist.
+   */
+  const State *const getState(State::id_t id) const;
+};
 #endif // GAMEDATA_HPP_

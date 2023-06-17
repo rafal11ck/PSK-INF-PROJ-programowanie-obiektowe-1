@@ -1,6 +1,11 @@
 #ifndef STATE_HPP_
 #define STATE_HPP_
 
+/**
+ *@file
+ *@brief State interface.
+ **/
+
 #include "statModifyingEntity.hpp"
 
 class GameData;
