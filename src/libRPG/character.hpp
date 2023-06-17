@@ -114,6 +114,11 @@ public:
   Stat::value_t getBaseStatValue(Stat::id_t id) const;
 
   /**
+   *@brief Gets final stat value
+   **/
+
+  Stat::value_t getStatValue(Stat::id_t id) const;
+  /**
    *@brief Gets game data  used by Character.
    *@return ::m_gameData.
    **/

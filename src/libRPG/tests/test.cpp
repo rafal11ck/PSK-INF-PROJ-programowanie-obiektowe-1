@@ -125,16 +125,17 @@ void testInventory(Character *character) {
 
 void testEquipment(Character *character) {
   std::cout << std::string(15, '-') << "testEquipment\n";
-
-  //![Item equiping]
-  // Item to equip.
-  const Item *item{character->getGameData()->getItem(2)};
-  // Slot where to equip that item into.
-  EquipmentSlot::id_t slot{*item->getEquipableSlots().begin()};
-  // Optional checking if Character has that item in inventory should be here.
-  character->equipItem(item, slot);
-  // Optional removal of item from Inventory.
-  //![Item equiping]
+  {
+    //![Item equiping]
+    // Item to equip.
+    const Item *item{character->getGameData()->getItem(2)};
+    // Slot where to equip that item into.
+    EquipmentSlot::id_t slot{*item->getEquipableSlots().begin()};
+    // Optional checking if Character has that item in inventory should be here.
+    character->equipItem(item, slot);
+    // Optional removal of item from Inventory.
+    //![Item equiping]
+  }
 
   std::cout << "Equiped Items\n";
   for (const std::pair<const EquipmentSlot *const, const Item *const> &it :

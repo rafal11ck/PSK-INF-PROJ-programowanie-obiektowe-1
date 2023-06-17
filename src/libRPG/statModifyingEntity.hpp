@@ -7,6 +7,7 @@
  *@brief StatModifyingEntity interface.
  **/
 
+#include "basicGamedata.hpp"
 #include "gameMetadata.hpp"
 #include "stat.hpp"
 #include <utility>
@@ -17,8 +18,9 @@
  *
  *It modifies Stats so it needs access to information about what stats do
  *exist.
+ *Associtates instance with gameMetadata.
  * */
-class StatModifyingEntity {
+class StatModifyingEntity : public BasicGameData {
 public:
   //! Repesents modification of stats <stat modyfied, value of modification>
   using modifier_t = std::pair<Stat::id_t, Stat::value_t>;
@@ -36,9 +38,12 @@ public:
   /**
    *@brief Constructor.
    *@param gameMetadata gameMetadata that instance is about.
-   *Associtates instance with gameMetadata.
+   *@param name Name
+   *@param description Description.
+   *
    **/
-  StatModifyingEntity(const GameMetadata *const gameMetadata);
+  StatModifyingEntity(const GameMetadata *const gameMetadata, std::string name,
+                      std::string description = "");
 
   /**
    *@brief Add modification of stats.

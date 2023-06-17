@@ -7,7 +7,7 @@
 #include "gameData.hpp"
 
 Item::Item(GameData *gameData, std::string name, std::string description)
-    : StatModifyingEntity(gameData), BasicGameData(name, description) {
+    : StatModifyingEntity(gameData, name, description) {
   //!@note It invokes GameData::addItem().
   gameData->addItem(this);
 }

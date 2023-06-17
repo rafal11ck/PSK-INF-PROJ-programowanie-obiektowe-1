@@ -17,7 +17,7 @@ class GameData;
  *
  *Should be used in GameData.
  **/
-class Item : public StatModifyingEntity, public BasicGameData {
+class Item : public StatModifyingEntity {
 
 public:
   //! Collection.

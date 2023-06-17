@@ -4,9 +4,12 @@
  **/
 
 #include "statModifyingEntity.hpp"
+#include "basicGamedata.hpp"
 
-StatModifyingEntity::StatModifyingEntity(const GameMetadata *gameMetadata)
-    : m_gameMetadata(gameMetadata) {}
+StatModifyingEntity::StatModifyingEntity(const GameMetadata *gameMetadata,
+                                         std::string name,
+                                         std::string description)
+    : BasicGameData(name, description), m_gameMetadata(gameMetadata) {}
 
 //! @todo Check if entity has modifier of that Stat already.
 void StatModifyingEntity::addModifier(Stat::id_t statModifed,
