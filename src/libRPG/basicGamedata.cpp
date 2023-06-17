@@ -1,8 +1,6 @@
 #include "basicGamedata.hpp"
 #include <exception>
-#include <list>
 #include <string>
-#include <sys/types.h>
 
 /**
  *@file

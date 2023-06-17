@@ -9,6 +9,7 @@
 #include "gameMetadata.hpp"
 #include <algorithm>
 #include <iostream>
+#include <string>
 
 /**
  *@param gameMetadata Where satas are added to.
@@ -144,6 +145,20 @@ void testEquipment(Character *character) {
   }
 }
 
+void testStatGetters(const Character *character) {
+  std::cout << std::string(15, '-') << "testStatGetters\n";
+
+  for (Stat *stat : character->getGameData()->getStats()) {
+    std::cout << stat->getName() << '\t'
+              << character->getStatValue(stat->getId()) << '\n';
+
+    for (auto it2 : character->getStatValueContrubitors(stat->getId())) {
+      std::cout << std::string(3, '>') << '\t' << it2->getName() << " ("
+                << it2->getModifierValue(stat->getId()) << ")\n";
+    }
+  }
+}
+
 int main() {
   GameData *gd{new GameData};
   addStats(gd);
@@ -154,6 +169,7 @@ int main() {
 
   testInventory(character);
   testEquipment(character);
+  testStatGetters(character);
 
   delete character;
 

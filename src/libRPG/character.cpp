@@ -2,6 +2,7 @@
 #include "equipmentSlot.hpp"
 #include "gameData.hpp"
 #include "item.hpp"
+#include "stat.hpp"
 #include "statModifyingEntity.hpp"
 #include <algorithm>
 
@@ -44,11 +45,27 @@ Stat::value_t Character::getBaseStatValue(Stat::id_t id) const {
 Character::statValueContrubitors_t
 Character::getStatValueContrubitors(Stat::id_t id) const {
   statValueContrubitors_t result{};
+  // For each equipment piece
   for (auto it : m_equipment) {
     const StatModifyingEntity *modifier{it.second};
-    // if (modifier->getModifierValue(id))
+    // Get modifier of stat caused by that piece.
+    Stat::value_t modv{modifier->getModifierValue(id)};
+    // if it modifies stat add it to result.
+    if (modv != 0)
+      result.push_back(modifier);
   }
 
+  return result;
+}
+
+Stat::value_t Character::getStatValue(Stat::id_t id) const {
+  statValueContrubitors_t contrubitors{getStatValueContrubitors(id)};
+
+  Stat::value_t result{getBaseStatValue(id)};
+
+  for (const StatModifyingEntity *contr : contrubitors) {
+    result += contr->getModifierValue(id);
+  }
   return result;
 }
 
