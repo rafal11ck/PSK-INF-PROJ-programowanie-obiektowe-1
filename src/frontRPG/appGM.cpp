@@ -2,11 +2,11 @@
 
 wxBEGIN_EVENT_TABLE(appGMPanel, wxPanel)
     EVT_BUTTON(ID_ADD_STAT, appGMPanel::OnAddStat)
-        EVT_BUTTON(ID_ADD_EQUIPMENT, appGMPanel::OnAddEquipment)
-            EVT_BUTTON(ID_ADD_STATE, appGMPanel::OnAddState) wxEND_EVENT_TABLE()
+    EVT_BUTTON(ID_ADD_EQUIPMENT, appGMPanel::OnAddEquipment)
+    EVT_BUTTON(ID_ADD_STATE, appGMPanel::OnAddState)
+wxEND_EVENT_TABLE()
 
-                appGMPanel::appGMPanel(wxNotebook *parent)
-    : wxPanel(parent, wxID_ANY) {
+appGMPanel::appGMPanel(wxNotebook *parent): wxPanel(parent, wxID_ANY) {
   gmNotebook = new wxNotebook(this, wxID_ANY);
 
   addElementPanel = new wxPanel(gmNotebook, wxID_ANY);
@@ -72,7 +72,7 @@ wxBEGIN_EVENT_TABLE(appGMPanel, wxPanel)
 }
 
 void appGMPanel::OnAddStat(wxCommandEvent &event) {
-  wxString name = wxGetTextFromUser("Enter name:", "Add Stat");
+  /*wxString name = wxGetTextFromUser("Enter name:", "Add Stat");
   wxString description = wxGetTextFromUser("Enter description:", "Add Stat");
 
   if (name.IsEmpty() || description.IsEmpty()) {
@@ -83,11 +83,11 @@ void appGMPanel::OnAddStat(wxCommandEvent &event) {
 
   statsCollection.AddStat(name, description);
 
-  UpdateStatsListCtrl();
+  UpdateStatsListCtrl();*/
 }
 
 void appGMPanel::OnAddEquipment(wxCommandEvent &event) {
-  wxString name = wxGetTextFromUser("Enter name:", "Add Equipment");
+  /*wxString name = wxGetTextFromUser("Enter name:", "Add Equipment");
   wxString description =
       wxGetTextFromUser("Enter description:", "Add Equipment");
 
@@ -99,11 +99,11 @@ void appGMPanel::OnAddEquipment(wxCommandEvent &event) {
 
   eqCollection.AddEquipment(name, description);
 
-  UpdateEqListCtrl();
+  UpdateEqListCtrl();*/
 }
 
 void appGMPanel::OnAddState(wxCommandEvent &event) {
-  wxString name = wxGetTextFromUser("Enter name:", "Add State");
+  /*wxString name = wxGetTextFromUser("Enter name:", "Add State");
   wxString description = wxGetTextFromUser("Enter description:", "Add State");
 
   if (name.IsEmpty() || description.IsEmpty()) {
@@ -114,11 +114,11 @@ void appGMPanel::OnAddState(wxCommandEvent &event) {
 
   stateCollection.AddState(name, description);
 
-  UpdateStateListCtrl();
+  UpdateStateListCtrl();*/
 }
 
 void appGMPanel::UpdateStatsListCtrl() {
-  statsListCtrl->DeleteAllItems();
+  /*statsListCtrl->DeleteAllItems();
 
   std::vector<Stat *> stats = statsCollection.GetStats();
   for (size_t i = 0; i < stats.size(); i++) {
@@ -127,11 +127,11 @@ void appGMPanel::UpdateStatsListCtrl() {
     statsListCtrl->SetItem(index, 1, stat->GetDescription());
     statsListCtrl->SetItem(index, 2, wxString::Format("%d", stat->GetValue()));
     statsListCtrl->SetItemData(index, reinterpret_cast<wxUIntPtr>(stat));
-  }
+  }*/
 }
 
 void appGMPanel::UpdateEqListCtrl() {
-  eqListCtrl->DeleteAllItems();
+  /*eqListCtrl->DeleteAllItems();
 
   std::vector<Equipment *> equipment = eqCollection.GetEquipment();
   for (size_t i = 0; i < equipment.size(); i++) {
@@ -139,11 +139,11 @@ void appGMPanel::UpdateEqListCtrl() {
     long index = eqListCtrl->InsertItem(i, eq->GetName());
     eqListCtrl->SetItem(index, 1, eq->GetDescription());
     eqListCtrl->SetItemData(index, reinterpret_cast<wxUIntPtr>(eq));
-  }
+  }*/
 }
 
 void appGMPanel::UpdateStateListCtrl() {
-  stateListCtrl->DeleteAllItems();
+  /*stateListCtrl->DeleteAllItems();
 
   std::vector<State *> states = stateCollection.GetStates();
   for (size_t i = 0; i < states.size(); i++) {
@@ -151,5 +151,5 @@ void appGMPanel::UpdateStateListCtrl() {
     long index = stateListCtrl->InsertItem(i, state->GetName());
     stateListCtrl->SetItem(index, 1, state->GetDescription());
     stateListCtrl->SetItemData(index, reinterpret_cast<wxUIntPtr>(state));
-  }
+  }*/
 }
