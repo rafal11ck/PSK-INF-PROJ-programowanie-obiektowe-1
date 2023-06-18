@@ -57,6 +57,7 @@ public:
    *@brief Adds item to collection and sets it's id.
    *@param item Item to add.
    *
+   *@snippet test.cpp Adding Item to GameData
    *@note It does not validate item.
    **/
   void addItem(Item *item);
