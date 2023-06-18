@@ -1,5 +1,5 @@
 /***************************************************************
- * Name:      aplikacjaApp.h
+ * Name:      appApp.h
  * Purpose:   Defines Application Class
  * Author:     ()
  * Created:   2023-06-17
@@ -10,10 +10,10 @@
 #ifndef APLIKACJAAPP_H
 #define APLIKACJAAPP_H
 
-#include "aplikacjaMain.hpp"
+#include "appMain.hpp"
 #include <wx/wx.h>
 
-class aplikacjaApp : public wxApp {
+class appApp : public wxApp {
 public:
   virtual bool OnInit();
 };

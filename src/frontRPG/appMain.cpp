@@ -1,5 +1,5 @@
 /***************************************************************
- * Name:      aplikacjaMain.cpp
+ * Name:      appMain.cpp
  * Purpose:   Code for Application Frame
  * Author:     ()
  * Created:   2023-06-17
@@ -7,15 +7,15 @@
  * License:
  **************************************************************/
 
-#include "aplikacjaMain.hpp"
+#include "appMain.hpp"
 
-aplikacjaFrame::aplikacjaFrame(const wxString &title)
+appFrame::appFrame(const wxString &title)
     : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(800, 600)) {
   wxBoxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
   notebook = new wxNotebook(this, wxID_ANY);
 
-  gmPanel = new aplikacjaGMPanel(notebook);
+  gmPanel = new appGMPanel(notebook);
   notebook->AddPage(gmPanel, "gamemaster");
 
   addCharPanel = new wxPanel(notebook, wxID_ANY);
@@ -35,10 +35,10 @@ aplikacjaFrame::aplikacjaFrame(const wxString &title)
   sizer->Add(notebook, 1, wxEXPAND);
   SetSizer(sizer);
 
-  addButton->Bind(wxEVT_BUTTON, &aplikacjaFrame::OnAddCharacter, this);
+  addButton->Bind(wxEVT_BUTTON, &appFrame::OnAddCharacter, this);
 }
 
-void aplikacjaFrame::OnAddCharacter(wxCommandEvent &event) {
+void appFrame::OnAddCharacter(wxCommandEvent &event) {
   wxString charName = charNameTextCtrl->GetValue();
 
   if (charName.IsEmpty()) {
@@ -46,7 +46,7 @@ void aplikacjaFrame::OnAddCharacter(wxCommandEvent &event) {
     return;
   }
 
-  wxPanel *newCharPanel = new aplikacjaPlayerPanel(notebook, charName);
+  wxPanel *newCharPanel = new appPlayerPanel(notebook, charName);
   notebook->AddPage(newCharPanel, charName);
 
   charNameTextCtrl->Clear();

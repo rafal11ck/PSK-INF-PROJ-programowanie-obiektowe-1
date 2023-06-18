@@ -1,5 +1,5 @@
 /***************************************************************
- * Name:      aplikacjaMain.h
+ * Name:      appMain.h
  * Purpose:   Defines Application Frame
  * Author:     ()
  * Created:   2023-06-17
@@ -10,16 +10,16 @@
 #ifndef APLIKACJAMAIN_H
 #define APLIKACJAMAIN_H
 
-#include "aplikacjaGM.hpp"
-#include "aplikacjaPlayer.hpp"
+#include "appGM.hpp"
+#include "appPlayer.hpp"
 #include <wx/button.h>
 #include <wx/notebook.h>
 #include <wx/textctrl.h>
 #include <wx/wx.h>
 
-class aplikacjaFrame : public wxFrame {
+class appFrame : public wxFrame {
 public:
-  aplikacjaFrame(const wxString &title);
+  appFrame(const wxString &title);
 
 private:
   wxNotebook *notebook;

@@ -1,6 +1,6 @@
-#include "aplikacjaPlayer.hpp"
+#include "appPlayer.hpp"
 
-aplikacjaPlayerPanel::aplikacjaPlayerPanel(wxNotebook *parent,
+appPlayerPanel::appPlayerPanel(wxNotebook *parent,
                                            const wxString &playerName)
     : wxPanel(parent, wxID_ANY) {
   playerNotebook = new wxNotebook(this, wxID_ANY);

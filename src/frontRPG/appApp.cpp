@@ -1,5 +1,5 @@
 /***************************************************************
- * Name:      aplikacjaApp.cpp
+ * Name:      appApp.cpp
  * Purpose:   Code for Application Class
  * Author:     ()
  * Created:   2023-06-17
@@ -7,13 +7,13 @@
  * License:
  **************************************************************/
 
-#include "aplikacjaApp.hpp"
-#include "aplikacjaMain.hpp"
+#include "appApp.hpp"
+#include "appMain.hpp"
 
-wxIMPLEMENT_APP(aplikacjaApp);
+wxIMPLEMENT_APP(appApp);
 
-bool aplikacjaApp::OnInit() {
-  aplikacjaFrame *frame = new aplikacjaFrame("My Application");
+bool appApp::OnInit() {
+  appFrame *frame = new appFrame("My Application");
   frame->Show(true);
   return true;
 }

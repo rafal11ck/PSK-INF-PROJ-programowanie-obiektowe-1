@@ -6,10 +6,10 @@
 #include <wx/button.h>
 #include <wx/textctrl.h>
 
-class aplikacjaPlayerPanel : public wxPanel
+class appPlayerPanel : public wxPanel
 {
 public:
-    aplikacjaPlayerPanel(wxNotebook* parent, const wxString& playerName);
+    appPlayerPanel(wxNotebook* parent, const wxString& playerName);
 
 private:
     wxNotebook* playerNotebook;

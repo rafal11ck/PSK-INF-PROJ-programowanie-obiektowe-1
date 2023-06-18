@@ -9,9 +9,9 @@
 
 enum { ID_ADD_STAT = wxID_HIGHEST + 1, ID_ADD_EQUIPMENT, ID_ADD_STATE };
 
-class aplikacjaGMPanel : public wxPanel {
+class appGMPanel : public wxPanel {
 public:
-  aplikacjaGMPanel(wxNotebook *parent);
+  appGMPanel(wxNotebook *parent);
 
 private:
   wxNotebook *gmNotebook;
