@@ -20,10 +20,6 @@ private:
   wxListCtrl *eqListCtrl;
   wxListCtrl *stateListCtrl;
 
-  StatsCollection statsCollection;
-  EqCollection eqCollection;
-  StateCollection stateCollection;
-
   void OnAddStat(wxCommandEvent &event);
   void OnAddEquipment(wxCommandEvent &event);
   void OnAddState(wxCommandEvent &event);
