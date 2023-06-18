@@ -7,8 +7,8 @@
  * License:
  **************************************************************/
 
-#ifndef APLIKACJAAPP_H
-#define APLIKACJAAPP_H
+#ifndef APPAPP_H
+#define APPAPP_H
 
 #include "appMain.hpp"
 #include <wx/wx.h>
@@ -18,4 +18,4 @@ public:
   virtual bool OnInit();
 };
 
-#endif // APLIKACJAAPP_H
+#endif // APPAPP_H

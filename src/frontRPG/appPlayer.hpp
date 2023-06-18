@@ -1,5 +1,5 @@
-#ifndef APLIKACJAPLAYER_H
-#define APLIKACJAPLAYER_H
+#ifndef APPPLAYER_H
+#define APPPLAYER_H
 
 #include <wx/wx.h>
 #include <wx/notebook.h>
@@ -15,4 +15,4 @@ private:
     wxNotebook* playerNotebook;
 };
 
-#endif // APLIKACJAPLAYER_H
+#endif // APPPLAYER_H

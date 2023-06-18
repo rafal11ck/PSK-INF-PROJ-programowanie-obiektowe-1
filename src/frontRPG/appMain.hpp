@@ -7,8 +7,8 @@
  * License:
  **************************************************************/
 
-#ifndef APLIKACJAMAIN_H
-#define APLIKACJAMAIN_H
+#ifndef APPMAIN_H
+#define APPMAIN_H
 
 #include "appGM.hpp"
 #include "appPlayer.hpp"
@@ -32,4 +32,4 @@ private:
 
 enum { ID_ADD_CHARACTER = 1 };
 
-#endif // APLIKACJAMAIN_H
+#endif // APPMAIN_H

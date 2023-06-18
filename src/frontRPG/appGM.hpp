@@ -1,5 +1,5 @@
-#ifndef APLIKACJAGM_H
-#define APLIKACJAGM_H
+#ifndef APPGM_H
+#define APPGM_H
 
 #include <wx/button.h>
 #include <wx/listctrl.h>
@@ -34,4 +34,4 @@ private:
   wxDECLARE_EVENT_TABLE();
 };
 
-#endif // APLIKACJAGM_H
+#endif // APPGM_H
