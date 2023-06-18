@@ -1,7 +1,8 @@
-#+options: toc:nil
-#+title: Projekt PO1 "Kalukulator Statystyk postaci na potrzeby gry RPG"
-#+author: Rafał Grot (backend), Kamil Gunia(frontend), Karina Goszczyńska(0.1%), Jakub Grzelec(0.1%)
 
+#+latex_header: \usepackage{polski}
+
+#+title: Projekt PO1 "Kalukulator Statystyk postaci na potrzeby gry RPG"
+#+author:Rafał Grot\lfloor{}backend\rfloor Kamil Gunia\lfloor{}frontend\rfloor{} Karina Goszczyńska\lceil1%\rceil Jakub Grzelec\lceil1%\rceil
 \newpage
 
 * Koncepcja
@@ -17,3 +18,9 @@ Statystyki postaci jest zależny od np. posiadanych stanów oraz założone prze
 - Użycie CMake. Ponieważ używanie biblioteki wxWidgets bez multiplatformowego systemu budowy mija się z celem istnienia tej biblioteki. Dodatkowo nie ogranicza użycia różnych środowisk programistycznych.
 - System kontroli wersji git. Jest to podstawowe narzędzie programisty. Uniknięcie pytania "Kto co robił".
 - Doxygen do generacji dokumentacji. Był używay do projektu z podstaw programowania.
+* Przegląd funkcjnalności projektu.
+Tak jak widać po uruhumieniu testów oraz aplikacji.
+* Plany rozwoju
+- Pokazywanie czynników, ktore modyfikują daną statystkę.
+- Zapis i odczyt danych do pliku.
+- Dodanie miejsca na notatki.
