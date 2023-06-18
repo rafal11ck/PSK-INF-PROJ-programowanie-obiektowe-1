@@ -1,0 +1,28 @@
+#+options: toc:nil
+#+title: Kalkulator statystyk postaci na potrzeby gry RPG Instrukcja
+#+author:
+#+latex_header: \usepackage[2cm]{geometry}
+#+toc: nil
+#+date:
+\newpage
+* Wymagania systemowe
+- wxWidgets.
+- CMake.
+- System operacjny [[https://wiki.archlinux.org/title/Arch_Linux][Arch linux]] z menadżerem okien np. [[https://hyprland.org/][Hyprland]].
+* Instalacja
+Plik wykonywlany będzie znajdował się w akutalnym katalogu pod nazwą =app=. Należy uruchomić poniższy skrypt.
+#+begin_example
+#!/bin/sh
+git clone 'https://github.com/rafal11ck/PSK-INF-PROJ-programowanie-obiektowe-1.git' &&
+cd PSK-INF-PROJ-programowanie-obiektowe-1/ &&
+mkdir build &&
+cd build &&
+cmake ../src &&
+cmake --build . --target app -j4 &&
+cd frontRPG
+#+end_example
+\newpage
+* Obsługa
+Podstawowymi danymi elementami kalkulatora są statystyki oraz sloty na ekwipunek. Należy zaczać ich dodania. Przy pomocy przycisków w zakładce =add= panelu =gamemaster=.
+#+caption: Panel gamemaster.
+[[file:img/gamemaster.png]]
