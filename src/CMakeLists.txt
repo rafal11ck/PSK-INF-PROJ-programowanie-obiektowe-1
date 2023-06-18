@@ -7,6 +7,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 include_directories(libRPG)
 add_subdirectory(libRPG)
 
+include_directories(frontRPG)
+add_subdirectory(frontRPG)
+
 # first we can indicate the documentation build as an option and set it to ON by default
 option(BUILD_DOC "Build documentation" ON)
 
