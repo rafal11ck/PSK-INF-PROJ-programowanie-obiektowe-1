@@ -1,4 +1,4 @@
-% Created 2023-06-18 Sun 22:06
+% Created 2023-06-18 Sun 22:12
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -31,29 +31,29 @@
 \newpage
 
 \section{Koncepcja}
-\label{sec:org64374a9}
-Celem projektu jest stworzenie aplikacji wyliczającej statystyki postaci w nie komuterowych grach RPG.
+\label{sec:org0d929d7}
+Celem projektu jest stworzenie aplikacji wyliczającej statystyki postaci w nie komputerowych grach RPG.
 W związku z czym do wyliczenia statystyk wymagane jest dodanie statstyk.
 Zakładamy że gra ma statystyki, przedmioty, stany, umiejętności, a postacie je wykorzystują.
 Statystyki postaci jest zależny od np. posiadanych stanów oraz założone przedmioty.
 \section{Specyfikacja, uzasadnienie wyboru konkretnych technologi.}
-\label{sec:orga7aaf80}
+\label{sec:org3b72e96}
 \begin{itemize}
-\item Język programiowania wykorzystany do realizacji projektu \texttt{c++} został narzucony z góry.
-\item Biblioteka klass wxWidgets. Ponieważ była na laboratorium. Nie wymaga nie standardowych mark preprocesora w przeciwieństwie do QT.
-\item Rozdzielenie backendu oraz frontendu, jest to dobra praktyka.
+\item Język programowania wykorzystany do realizacji projektu \texttt{c++} został narzucony z góry.
+\item Biblioteka klass wxWidgets. Ponieważ była na laboratorium. Nie wymaga nie standardowych mark pre-procesora w przeciwieństwie do QT.
+\item Rozdzielenie back-endu oraz front-endu, jest to dobra praktyka.
 \item Nie wykorzystanie bazy danych, brak umiejętności aby zrobić to prawidłowo.
-\item Użycie CMake. Ponieważ używanie biblioteki wxWidgets bez multiplatformowego systemu budowy mija się z celem istnienia tej biblioteki. Dodatkowo nie ogranicza użycia różnych środowisk programistycznych.
+\item Użycie CMake. Ponieważ używanie biblioteki wxWidgets bez multi-platformowego systemu budowy mija się z celem istnienia tej biblioteki. Dodatkowo nie ogranicza użycia różnych środowisk programistycznych.
 \item System kontroli wersji git. Jest to podstawowe narzędzie programisty. Uniknięcie pytania ``Kto co robił''.
-\item Doxygen do generacji dokumentacji. Był używay do projektu z podstaw programowania.
+\item Doxygen do generacji dokumentacji. Był używany do projektu z podstaw programowania.
 \end{itemize}
-\section{Dokumentacja implementacji}
-\label{sec:org0d384ae}
-Jest osobno generowana przez doxygen.
+\section{Przegląd funkcjonalności projektu.}
+\label{sec:org31cca4d}
+Tak jak widać po uruchomieniu testów oraz aplikacji.
 \section{Plany rozwoju}
-\label{sec:org3424e53}
+\label{sec:org2ff64c4}
 \begin{itemize}
-\item Pokazywanie czynników, ktore modyfikują daną statystkę.
+\item Pokazywanie czynników, które modyfikują daną statystkę.
 \item Zapis i odczyt danych do pliku.
 \item Dodanie miejsca na notatki.
 \end{itemize}
