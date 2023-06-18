@@ -2,6 +2,7 @@
 #+title: Kalkulator statystyk postaci na potrzeby gry RPG Instrukcja
 #+author:
 #+latex_header: \usepackage[2cm]{geometry}
+#+latex_header: \usepackage{polski}
 #+toc: nil
 #+date:
 \newpage
@@ -26,3 +27,12 @@ cd frontRPG
 Podstawowymi danymi elementami kalkulatora są statystyki oraz sloty na ekwipunek. Należy zaczać ich dodania. Przy pomocy przycisków w zakładce =add= panelu =gamemaster=.
 #+caption: Panel gamemaster.
 [[file:img/gamemaster.png]]
+- Do doawania statystki należy kliknąć przycisk =Add stat=. Spowoduje to wyświetlenie okna dialogowego, które pyta o nazwę statystki do dodania, nastepnie o opcjonlany opis. Analognicznie dodaje się sloty na ekwipunek.
+#+caption: Okno dialgowe pytające użytkownika o podanie nazwy statystki.
+[[file:img/statNamePop.png]]
+- Statystyki które istnieją w grze można wyświetlić przy pomocy zakłaki =stats=. Analgicznie można wyświtelić sloty na ekwiupunek w zakaładce =slots=.
+#+caption: Lista Statystyk, które isnieją w grze.
+[[file:img/gamemasterStatsList.png]]
+- Aby dodać postać należy przejść do zakładki =add character=, wpisać nazwę postaci oraz kilknąć na przycisk add. Powoduje to dodanie nowej zakładki repezentującej postać.
+#+caption: Dodawanie postaci.
+[[file:img/addingCharacter.png]]

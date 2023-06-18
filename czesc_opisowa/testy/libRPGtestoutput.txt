@@ -1,0 +1,40 @@
+---------------addStats
+1	strength	just strength
+2	chadness	Only chads have this
+3	speed	
+---------------addEqSlots
+1	Leg	Leg is leg
+2	Head	
+3	Hand	For gloves or smth
+---------------addItems
+1	Stick	Desc: 	Mod:	strength by 3	Equipable on: Hand	
+2	Sunglasses	Desc: They protect from sun	Mod:	chadness by 100	Equipable on: Head	
+---------------addStates
+1	inż	Desc: 
+>>>	strength	2
+>>>	chadness	1
+2	Kampania wrześniowa	Desc: 
+>>>	speed	-60
+---------------testCharacter
+Absurd thing thrown exception as it was supposed to.
+Not found with given ID
+strength =	4
+chadness =	0
+speed =	0
+---------------testInventory
+item id: 1 	Quantity: 2	Stick
+item id: 2 	Quantity: 1	Sunglasses
+---------------testEquipment
+Equiped Items
+Head: 	Sunglasses
+---------------testCharacterStates
+State id: 1	Name:	inż
+State id: 2	Name:	Kampania wrześniowa
+---------------testStatGetters
+strength	6
+>>>	inż (2)
+chadness	101
+>>>	Sunglasses (100)
+>>>	inż (1)
+speed	-60
+>>>	Kampania wrześniowa (-60)

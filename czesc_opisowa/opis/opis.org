@@ -1,6 +1,6 @@
 #+options: toc:nil
 #+title: Projekt PO1 "Kalukulator Statystyk postaci na potrzeby gry RPG"
-#+author: Rafał Grot, Kamil Gunia, Karina Goszczyńska, Jakub Grzelec
+#+author: Rafał Grot (backend), Kamil Gunia(frontend), Karina Goszczyńska(0.1%), Jakub Grzelec(0.1%)
 
 \newpage
 

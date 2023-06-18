@@ -2,19 +2,21 @@
 
 wxBEGIN_EVENT_TABLE(appGMPanel, wxPanel)
     EVT_BUTTON(ID_ADD_STAT, appGMPanel::OnAddStat)
-    EVT_BUTTON(ID_ADD_EQUIPMENT, appGMPanel::OnAddEquipment)
-    EVT_BUTTON(ID_ADD_SLOT, appGMPanel::OnAddSlot)
-    EVT_BUTTON(ID_ADD_STATE, appGMPanel::OnAddState)
-wxEND_EVENT_TABLE()
+        EVT_BUTTON(ID_ADD_EQUIPMENT, appGMPanel::OnAddEquipment)
+            EVT_BUTTON(ID_ADD_SLOT, appGMPanel::OnAddSlot)
+                EVT_BUTTON(ID_ADD_STATE, appGMPanel::OnAddState)
+                    wxEND_EVENT_TABLE()
 
-appGMPanel::appGMPanel(wxNotebook *parent): wxPanel(parent, wxID_ANY), m_gamedata(new GameData){
+                        appGMPanel::appGMPanel(wxNotebook *parent)
+    : wxPanel(parent, wxID_ANY), m_gamedata(new GameData) {
   gmNotebook = new wxNotebook(this, wxID_ANY);
 
   addElementPanel = new wxPanel(gmNotebook, wxID_ANY);
   addElementSizer = new wxBoxSizer(wxVERTICAL);
 
   addStatButton = new wxButton(addElementPanel, ID_ADD_STAT, "Add stat");
-  addEquipmentButton = new wxButton(addElementPanel, ID_ADD_EQUIPMENT, "Add item");
+  addEquipmentButton =
+      new wxButton(addElementPanel, ID_ADD_EQUIPMENT, "Add item");
   addSlotButton = new wxButton(addElementPanel, ID_ADD_SLOT, "Add slot");
   addStateButton = new wxButton(addElementPanel, ID_ADD_STATE, "Add state");
 
@@ -48,7 +50,7 @@ appGMPanel::appGMPanel(wxNotebook *parent): wxPanel(parent, wxID_ANY), m_gamedat
   slotPanel = new wxPanel(gmNotebook, wxID_ANY);
   slotSizer = new wxBoxSizer(wxVERTICAL);
   slotListCtrl = new wxListCtrl(slotPanel, wxID_ANY, wxDefaultPosition,
-                                 wxDefaultSize, wxLC_REPORT | wxLC_SINGLE_SEL);
+                                wxDefaultSize, wxLC_REPORT | wxLC_SINGLE_SEL);
   slotListCtrl->InsertColumn(0, "Name");
   slotListCtrl->SetColumnWidth(0, 150);
   slotSizer->Add(slotListCtrl, 1, wxEXPAND | wxALL, 5);
@@ -100,7 +102,8 @@ void appGMPanel::OnAddEquipment(wxCommandEvent &event) {
     return;
   }
 
-  Item* item{new Item(m_gamedata, name.ToStdString(), description.ToStdString())};
+  Item* item{new Item(m_gamedata, name.ToStdString(),
+  description.ToStdString())};
 
   if(m_gamedata == nullptr){
         std::cerr<<"you are fucking dumb\n";
@@ -108,7 +111,7 @@ void appGMPanel::OnAddEquipment(wxCommandEvent &event) {
   }
   m_gamedata->addItem(item);*/
 
-  //UpdateEqListCtrl();
+  // UpdateEqListCtrl();
 }
 
 void appGMPanel::OnAddSlot(wxCommandEvent &event) {
@@ -121,7 +124,8 @@ void appGMPanel::OnAddSlot(wxCommandEvent &event) {
     return;
   }
 
-  m_gamedata->addEquipmentSlot(new EquipmentSlot(name.ToStdString(), description.ToStdString()));
+  m_gamedata->addEquipmentSlot(
+      new EquipmentSlot(name.ToStdString(), description.ToStdString()));
 
   UpdateSlotListCtrl();
 }
@@ -136,7 +140,8 @@ void appGMPanel::OnAddState(wxCommandEvent &event) {
     return;
   }
 
-  State *state{new State(m_gamedata, name.ToStdString(), description.ToStdString())};
+  State *state{
+      new State(m_gamedata, name.ToStdString(), description.ToStdString())};
 
   UpdateStateListCtrl();
 }
@@ -146,6 +151,7 @@ void appGMPanel::UpdateStatsListCtrl() {
   long i{};
   for (const auto &it : m_gamedata->getStats()) {
     long index = statsListCtrl->InsertItem(i, it->getName());
+    statsListCtrl->SetItem(index, 1, it->getDescription());
     ++i;
   }
 }

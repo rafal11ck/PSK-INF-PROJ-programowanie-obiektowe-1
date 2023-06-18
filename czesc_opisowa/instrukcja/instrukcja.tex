@@ -1,4 +1,4 @@
-% Created 2023-06-18 Sun 20:24
+% Created 2023-06-18 Sun 21:25
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -13,6 +13,7 @@
 \usepackage{capt-of}
 \usepackage{hyperref}
 \usepackage[2cm]{geometry}
+\usepackage{polski}
 \date{}
 \title{Kalkulator statystyk postaci na potrzeby gry RPG Instrukcja}
 \hypersetup{
@@ -27,14 +28,14 @@
 \maketitle
 \newpage
 \section{Wymagania systemowe}
-\label{sec:org2e5ebcc}
+\label{sec:org36e8277}
 \begin{itemize}
 \item wxWidgets.
 \item CMake.
 \item System operacjny \href{https://wiki.archlinux.org/title/Arch\_Linux}{Arch linux} z menadżerem okien np. \href{https://hyprland.org/}{Hyprland}.
 \end{itemize}
 \section{Instalacja}
-\label{sec:orgceb15bf}
+\label{sec:org5283da3}
 Plik wykonywlany będzie znajdował się w akutalnym katalogu pod nazwą \texttt{app}. Należy uruchomić poniższy skrypt.
 \begin{verbatim}
 #!/bin/sh
@@ -48,11 +49,35 @@ cd frontRPG
 \end{verbatim}
 \newpage
 \section{Obsługa}
-\label{sec:org7d94f0c}
+\label{sec:org9f37e2d}
 Podstawowymi danymi elementami kalkulatora są statystyki oraz sloty na ekwipunek. Należy zaczać ich dodania. Przy pomocy przycisków w zakładce \texttt{add} panelu \texttt{gamemaster}.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.9\linewidth]{img/gamemaster.png}
 \caption{Panel gamemaster.}
+\end{figure}
+\begin{itemize}
+\item Do doawania statystki należy kliknąć przycisk \texttt{Add stat}. Spowoduje to wyświetlenie okna dialogowego, które pyta o nazwę statystki do dodania, nastepnie o opcjonlany opis. Analognicznie dodaje się sloty na ekwipunek.
+\end{itemize}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{img/statNamePop.png}
+\caption{Okno dialgowe pytające użytkownika o podanie nazwy statystki.}
+\end{figure}
+\begin{itemize}
+\item Statystyki które istnieją w grze można wyświetlić przy pomocy zakłaki \texttt{stats}. Analgicznie można wyświtelić sloty na ekwiupunek w zakaładce \texttt{slots}.
+\end{itemize}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{img/gamemasterStatsList.png}
+\caption{Lista Statystyk, które isnieją w grze.}
+\end{figure}
+\begin{itemize}
+\item Aby dodać postać należy przejść do zakładki \texttt{add character}, wpisać nazwę postaci oraz kilknąć na przycisk add. Powoduje to dodanie nowej zakładki repezentującej postać.
+\end{itemize}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{img/addingCharacter.png}
+\caption{Dodawanie postaci.}
 \end{figure}
 \end{document}
