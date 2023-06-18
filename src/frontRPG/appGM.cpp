@@ -14,7 +14,7 @@ appGMPanel::appGMPanel(wxNotebook *parent): wxPanel(parent, wxID_ANY), m_gamedat
   addElementSizer = new wxBoxSizer(wxVERTICAL);
 
   addStatButton = new wxButton(addElementPanel, ID_ADD_STAT, "Add stat");
-  addEquipmentButton = new wxButton(addElementPanel, ID_ADD_EQUIPMENT, "Add equipment");
+  addEquipmentButton = new wxButton(addElementPanel, ID_ADD_EQUIPMENT, "Add item");
   addSlotButton = new wxButton(addElementPanel, ID_ADD_SLOT, "Add slot");
   addStateButton = new wxButton(addElementPanel, ID_ADD_STATE, "Add state");
 
@@ -78,7 +78,7 @@ appGMPanel::appGMPanel(wxNotebook *parent): wxPanel(parent, wxID_ANY), m_gamedat
 }
 
 void appGMPanel::OnAddStat(wxCommandEvent &event) {
-  /*wxString name = wxGetTextFromUser("Enter name:", "Add Stat");
+  wxString name = wxGetTextFromUser("Enter name:", "Add Stat");
   wxString description = wxGetTextFromUser("Enter description:", "Add Stat");
 
   if (name.IsEmpty()) {
@@ -87,14 +87,14 @@ void appGMPanel::OnAddStat(wxCommandEvent &event) {
     return;
   }
 
-  statsCollection.AddStat(name, description);
+  m_gamedata->addStat(new Stat(name.ToStdString(), description.ToStdString()));
 
-  UpdateStatsListCtrl();*/
+  //UpdateStatsListCtrl();
 }
 
 void appGMPanel::OnAddEquipment(wxCommandEvent &event) {
-  wxString name = wxGetTextFromUser("Enter name:", "Add Equipment");
-  wxString description = wxGetTextFromUser("Enter description:", "Add Equipment");
+  /*wxString name = wxGetTextFromUser("Enter name:", "Add Item");
+  wxString description = wxGetTextFromUser("Enter description:", "Add Item");
 
   if (name.IsEmpty()) {
     wxMessageBox("Name or description cannot be empty!", "Error",
@@ -108,7 +108,7 @@ void appGMPanel::OnAddEquipment(wxCommandEvent &event) {
         std::cerr<<"you are fucking dumb\n";
         std::abort();
   }
-  m_gamedata->addItem(item);
+  m_gamedata->addItem(item);*/
 
   //UpdateEqListCtrl();
 }
