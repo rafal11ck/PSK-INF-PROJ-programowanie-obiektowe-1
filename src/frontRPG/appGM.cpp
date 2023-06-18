@@ -31,10 +31,8 @@ appGMPanel::appGMPanel(wxNotebook *parent): wxPanel(parent, wxID_ANY), m_gamedat
                                  wxDefaultSize, wxLC_REPORT | wxLC_SINGLE_SEL);
   statsListCtrl->InsertColumn(0, "Name");
   statsListCtrl->InsertColumn(1, "Description");
-  statsListCtrl->InsertColumn(2, "Value");
   statsListCtrl->SetColumnWidth(0, 150);
   statsListCtrl->SetColumnWidth(1, 400);
-  statsListCtrl->SetColumnWidth(2, 50);
   statsSizer->Add(statsListCtrl, 1, wxEXPAND | wxALL, 5);
   statsPanel->SetSizer(statsSizer);
 
@@ -89,7 +87,7 @@ void appGMPanel::OnAddStat(wxCommandEvent &event) {
 
   m_gamedata->addStat(new Stat(name.ToStdString(), description.ToStdString()));
 
-  //UpdateStatsListCtrl();
+  UpdateStatsListCtrl();
 }
 
 void appGMPanel::OnAddEquipment(wxCommandEvent &event) {
@@ -114,35 +112,42 @@ void appGMPanel::OnAddEquipment(wxCommandEvent &event) {
 }
 
 void appGMPanel::OnAddSlot(wxCommandEvent &event) {
-    //!@todo add implementation
-}
-
-void appGMPanel::OnAddState(wxCommandEvent &event) {
-  /*wxString name = wxGetTextFromUser("Enter name:", "Add State");
+  wxString name = wxGetTextFromUser("Enter name:", "Add State");
   wxString description = wxGetTextFromUser("Enter description:", "Add State");
 
-  if (name.IsEmpty() || description.IsEmpty()) {
+  if (name.IsEmpty()) {
     wxMessageBox("Name or description cannot be empty!", "Error",
                  wxOK | wxICON_ERROR);
     return;
   }
 
-  stateCollection.AddState(name, description);
+  m_gamedata->addEquipmentSlot(new EquipmentSlot(name.ToStdString(), description.ToStdString()));
 
-  UpdateStateListCtrl();*/
+  UpdateSlotListCtrl();
+}
+
+void appGMPanel::OnAddState(wxCommandEvent &event) {
+  wxString name = wxGetTextFromUser("Enter name:", "Add State");
+  wxString description = wxGetTextFromUser("Enter description:", "Add State");
+
+  if (name.IsEmpty()) {
+    wxMessageBox("Name or description cannot be empty!", "Error",
+                 wxOK | wxICON_ERROR);
+    return;
+  }
+
+  State *state{new State(m_gamedata, name.ToStdString(), description.ToStdString())};
+
+  UpdateStateListCtrl();
 }
 
 void appGMPanel::UpdateStatsListCtrl() {
-  /*statsListCtrl->DeleteAllItems();
-
-  std::vector<Stat *> stats = statsCollection.GetStats();
-  for (size_t i = 0; i < stats.size(); i++) {
-    Stat *stat = stats[i];
-    long index = statsListCtrl->InsertItem(i, stat->GetName());
-    statsListCtrl->SetItem(index, 1, stat->GetDescription());
-    statsListCtrl->SetItem(index, 2, wxString::Format("%d", stat->GetValue()));
-    statsListCtrl->SetItemData(index, reinterpret_cast<wxUIntPtr>(stat));
-  }*/
+  statsListCtrl->DeleteAllItems();
+  long i{};
+  for (const auto &it : m_gamedata->getStats()) {
+    long index = statsListCtrl->InsertItem(i, it->getName());
+    ++i;
+  }
 }
 
 void appGMPanel::UpdateEqListCtrl() {
@@ -158,17 +163,19 @@ void appGMPanel::UpdateEqListCtrl() {
 }
 
 void appGMPanel::UpdateSlotListCtrl() {
-    //!@todo add implementation
+  slotListCtrl->DeleteAllItems();
+  long i{};
+  for (const auto &it : m_gamedata->getEquipmentSlots()) {
+    long index = slotListCtrl->InsertItem(i, it->getName());
+    ++i;
+  }
 }
 
 void appGMPanel::UpdateStateListCtrl() {
-  /*stateListCtrl->DeleteAllItems();
-
-  std::vector<State *> states = stateCollection.GetStates();
-  for (size_t i = 0; i < states.size(); i++) {
-    State *state = states[i];
-    long index = stateListCtrl->InsertItem(i, state->GetName());
-    stateListCtrl->SetItem(index, 1, state->GetDescription());
-    stateListCtrl->SetItemData(index, reinterpret_cast<wxUIntPtr>(state));
-  }*/
+  stateListCtrl->DeleteAllItems();
+  long i{};
+  for (const auto &it : m_gamedata->getStates()) {
+    long index = stateListCtrl->InsertItem(i, it->getName());
+    ++i;
+  }
 }
