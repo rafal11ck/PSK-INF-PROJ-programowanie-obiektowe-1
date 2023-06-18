@@ -1,6 +1,7 @@
 #ifndef BASICGAMEMETADATA_HPP_
 #define BASICGAMEMETADATA_HPP_
 
+#include <exception>
 #include <limits>
 #include <string>
 
@@ -8,6 +9,17 @@
  *@file
  *@brief BasicGameData interface.
  **/
+
+/**
+ *@brief Illegal id exception
+ *@see BasicGameData::INVALID_ID
+ * */
+class exceptionIllegalId : public std::exception {
+  /**@brief What.
+   *@return Info string.
+   */
+  std::string what();
+};
 
 /**
  *@brief Basic information about game.
@@ -47,6 +59,11 @@ protected:
    */
   void setId(id_t id);
 
+  /**
+   *@brief Check itegrity of data.
+   **/
+  void validateIntegrity() const;
+
 public:
   /**
    *@brief Sets name.
@@ -77,6 +94,13 @@ public:
    *@return id.
    **/
   id_t getId() const;
+
+  /**
+   *@brief Check if id is equal.
+   *@param id Id to check.
+   *@return True if id is same as parameter.
+   **/
+  bool isId(id_t id) const;
 };
 
 #endif // BASICGAMEMETADATA_HPP_

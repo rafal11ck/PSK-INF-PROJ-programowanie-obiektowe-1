@@ -7,18 +7,30 @@
  *@brief StatModifyingEntity interface.
  **/
 
+#include "basicGamedata.hpp"
 #include "gameMetadata.hpp"
 #include "stat.hpp"
-#include <utility>
 #include <vector>
+
+/**
+ *@brief Invalid game data.
+ * */
+class exceptionInvalidGameMetadata : public std::exception {
+  /**
+   *@brief What.
+   *@return Messaage.
+   **/
+  std::string what();
+};
 
 /**
  *@brief Repesents collection of stat modifiers.
  *
  *It modifies Stats so it needs access to information about what stats do
  *exist.
+ *Associtates instance with gameMetadata.
  * */
-class StatModifyingEntity {
+class StatModifyingEntity : public BasicGameData {
 public:
   //! Repesents modification of stats <stat modyfied, value of modification>
   using modifier_t = std::pair<Stat::id_t, Stat::value_t>;
@@ -36,9 +48,12 @@ public:
   /**
    *@brief Constructor.
    *@param gameMetadata gameMetadata that instance is about.
-   *Associtates instance with gameMetadata.
+   *@param name Name
+   *@param description Description.
+   *
    **/
-  StatModifyingEntity(const GameMetadata *const gameMetadata);
+  StatModifyingEntity(const GameMetadata *const gameMetadata, std::string name,
+                      std::string description = "");
 
   /**
    *@brief Add modification of stats.
@@ -46,6 +61,13 @@ public:
    *@param by Modify value.
    **/
   void addModifier(Stat::id_t, Stat::value_t by);
+
+  /**
+   *@brief Modifier value getter.
+   *@param id Id of stat to get value of modifier of.
+   *@return Modifier value or 0 if Instance does not modify stat asked.
+   * */
+  Stat::value_t getModifierValue(Stat::id_t id) const;
 
   /**
    *@brief GameMeatadata getter.

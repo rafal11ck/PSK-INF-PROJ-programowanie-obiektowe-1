@@ -17,7 +17,7 @@ class GameData;
  *
  *Should be used in GameData.
  **/
-class Item : public StatModifyingEntity, public BasicGameData {
+class Item : public StatModifyingEntity {
 
 public:
   //! Collection.
@@ -33,6 +33,7 @@ public:
    *@param gameData GameData to which item is added.
    *@param name Name of item.
    *@param description description.
+   *
    *
    *@snippet test.cpp Adding Item to GameData
    */
@@ -60,7 +61,13 @@ public:
    *@param equipmentSlotId Slot to check.
    *@returns True if Item is equipable in enquiered slot. False if it is not.
    **/
-  bool isEquipableOn(EquipmentSlot::id_t equipmentSlotId);
+  bool isEquipableOn(EquipmentSlot::id_t equipmentSlotId) const;
+
+  /**
+   *@brief Get equipable slots.
+   *@return m_equipableOn.
+   **/
+  const equipableSlots_t &getEquipableSlots() const;
 };
 
 #endif // ITEM_HPP_

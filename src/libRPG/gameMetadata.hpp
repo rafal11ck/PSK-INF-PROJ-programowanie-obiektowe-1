@@ -16,7 +16,7 @@
 /**
  *@brief Exception.
  */
-class exceptionNonExistingId : std::exception {
+class exceptionNonExistingId : public std::exception {
 public:
   /**
    *@brief What.

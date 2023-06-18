@@ -19,7 +19,7 @@ public:
   /**
    *@brief Constructor
    *@param name Name of statistics.
-   *@param description  Optional description of statistics;
+   *@param description Optional description of statistics;
    **/
   Stat(std::string name, std::string description = "");
 };
