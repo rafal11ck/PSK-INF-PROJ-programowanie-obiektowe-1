@@ -1,0 +1,19 @@
+#+options: toc:nil
+#+title: Projekt PO1 "Kalukulator Statystyk postaci na potrzeby gry RPG"
+#+author: Rafał Grot, Kamil Gunia, Karina Goszczyńska, Jakub Grzelec
+
+\newpage
+
+* Koncepcja
+Celem projektu jest stworzenie aplikacji wyliczającej statystyki postaci w nie komuterowych grach RPG.
+W związku z czym do wyliczenia statystyk wymagane jest dodanie statstyk.
+Zakładamy że gra ma statystyki, przedmioty, stany, umiejętności, a postacie je wykorzystują.
+Statystyki postaci jest zależny od np. posiadanych stanów oraz założone przedmioty.
+* Specyfikacja, uzasadnienie wyboru konkretnych technologi.
+- Język programiowania wykorzystany do realizacji projektu =c++= został narzucony z góry.
+- Biblioteka klass wxWidgets. Ponieważ była na laboratorium. Nie wymaga nie standardowych mark preprocesora w przeciwieństwie do QT.
+- Rozdzielenie backendu oraz frontendu, jest to dobra praktyka.
+- Nie wykorzystanie bazy danych, brak umiejętności aby zrobić to prawidłowo.
+- Użycie CMake. Ponieważ używanie biblioteki wxWidgets bez multiplatformowego systemu budowy mija się z celem istnienia tej biblioteki. Dodatkowo nie ogranicza użycia różnych środowisk programistycznych.
+- System kontroli wersji git. Jest to podstawowe narzędzie programisty. Uniknięcie pytania "Kto co robił".
+- Doxygen do generacji dokumentacji. Był używay do projektu z podstaw programowania.
