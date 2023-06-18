@@ -29,6 +29,8 @@ class excpetionGameDataMissmatch : public std::exception {
  *@see GameMetadata
  */
 class GameData : public GameMetadata {
+  friend Item;
+
 public:
   //! Collection used to hold items.
   using itemcollection_t = std::set<Item *>;
@@ -53,6 +55,7 @@ public:
    **/
   ~GameData();
 
+private:
   /**
    *@brief Adds item to collection and sets it's id.
    *@param item Item to add.
@@ -62,6 +65,7 @@ public:
    **/
   void addItem(Item *item);
 
+public:
   /**
    *@brief Getter.
    *@return ::m_items.
