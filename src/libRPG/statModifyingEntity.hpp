@@ -13,6 +13,17 @@
 #include <vector>
 
 /**
+ *@brief Invalid game data.
+ * */
+class exceptionInvalidGameMetadata : public std::exception {
+  /**
+   *@brief What.
+   *@return Messaage.
+   **/
+  std::string what();
+};
+
+/**
  *@brief Repesents collection of stat modifiers.
  *
  *It modifies Stats so it needs access to information about what stats do

@@ -29,7 +29,8 @@ void GameData::addItem(Item *item) {
     //!@todo LOW change excpetion to it's own exception class
     //!@throws std::__throw_runtime_error "Item was not added to GameData"
     //! When item was not added to the game some reason.
-    std::__throw_runtime_error("Item was not added to GameData");
+    // std::__throw_runtime_error("Item was not added to GameData");
+    ;
 }
 
 const GameData::itemcollection_t &GameData::getItems() const { return m_items; }

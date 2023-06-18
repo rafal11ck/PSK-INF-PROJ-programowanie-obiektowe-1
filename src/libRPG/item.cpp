@@ -6,13 +6,8 @@
 #include "item.hpp"
 #include "gameData.hpp"
 
-std::string exceptionInvalidGameData::what() { return "Invalid Game Data"; }
-
 Item::Item(GameData *gameData, std::string name, std::string description)
     : StatModifyingEntity(gameData, name, description) {
-  if (gameData == nullptr) {
-    throw exceptionInvalidGameData();
-  }
   gameData->addItem(this);
 }
 

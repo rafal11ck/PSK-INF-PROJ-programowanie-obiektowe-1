@@ -7,10 +7,18 @@
 #include "basicGamedata.hpp"
 #include <algorithm>
 
+std::string exceptionInvalidGameMetadata::what() {
+  return "Invalid Game metadata";
+}
+
 StatModifyingEntity::StatModifyingEntity(const GameMetadata *gameMetadata,
                                          std::string name,
                                          std::string description)
-    : BasicGameData(name, description), m_gameMetadata(gameMetadata) {}
+    : BasicGameData(name, description), m_gameMetadata(gameMetadata) {
+  //!@throw exceptionInvalidGameMetadata
+  if (gameMetadata == nullptr)
+    throw exceptionInvalidGameMetadata();
+}
 
 //! @todo Check if entity has modifier of that Stat already.
 void StatModifyingEntity::addModifier(Stat::id_t statModifed,

@@ -10,17 +10,6 @@
 #include "statModifyingEntity.hpp"
 #include <set>
 
-/**
- *@brief Invalid game data.
- * */
-class exceptionInvalidGameData : public std::exception {
-  /**
-   *@brief What.
-   *@return Messaage.
-   **/
-  std::string what();
-};
-
 class GameData;
 
 /**
@@ -45,8 +34,6 @@ public:
    *@param name Name of item.
    *@param description description.
    *
-   *@throw exceptionInvalidGameData When attempted to add Item into GameData
-   *that does not exist.
    *
    *@snippet test.cpp Adding Item to GameData
    */
