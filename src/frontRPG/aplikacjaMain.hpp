@@ -10,30 +10,26 @@
 #ifndef APLIKACJAMAIN_H
 #define APLIKACJAMAIN_H
 
-#include <wx/wx.h>
-#include <wx/notebook.h>
+#include "aplikacjaGM.hpp"
+#include "aplikacjaPlayer.hpp"
 #include <wx/button.h>
+#include <wx/notebook.h>
 #include <wx/textctrl.h>
-#include "aplikacjaGM.h"
-#include "aplikacjaPlayer.h"
+#include <wx/wx.h>
 
-class aplikacjaFrame : public wxFrame
-{
+class aplikacjaFrame : public wxFrame {
 public:
-    aplikacjaFrame(const wxString& title);
+  aplikacjaFrame(const wxString &title);
 
 private:
-    wxNotebook* notebook;
-    wxPanel* gmPanel;
-    wxPanel* addCharPanel;
-    wxTextCtrl* charNameTextCtrl;
+  wxNotebook *notebook;
+  wxPanel *gmPanel;
+  wxPanel *addCharPanel;
+  wxTextCtrl *charNameTextCtrl;
 
-    void OnAddCharacter(wxCommandEvent& event);
+  void OnAddCharacter(wxCommandEvent &event);
 };
 
-enum
-{
-    ID_ADD_CHARACTER = 1
-};
+enum { ID_ADD_CHARACTER = 1 };
 
 #endif // APLIKACJAMAIN_H

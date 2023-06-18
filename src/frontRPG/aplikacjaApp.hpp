@@ -10,13 +10,12 @@
 #ifndef APLIKACJAAPP_H
 #define APLIKACJAAPP_H
 
+#include "aplikacjaMain.hpp"
 #include <wx/wx.h>
-#include "aplikacjaMain.h"
 
-class aplikacjaApp : public wxApp
-{
+class aplikacjaApp : public wxApp {
 public:
-    virtual bool OnInit();
+  virtual bool OnInit();
 };
 
 #endif // APLIKACJAAPP_H

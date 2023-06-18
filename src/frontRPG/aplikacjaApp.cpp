@@ -7,14 +7,13 @@
  * License:
  **************************************************************/
 
-#include "aplikacjaApp.h"
-#include "aplikacjaMain.h"
+#include "aplikacjaApp.hpp"
+#include "aplikacjaMain.hpp"
 
 wxIMPLEMENT_APP(aplikacjaApp);
 
-bool aplikacjaApp::OnInit()
-{
-    aplikacjaFrame* frame = new aplikacjaFrame("My Application");
-    frame->Show(true);
-    return true;
+bool aplikacjaApp::OnInit() {
+  aplikacjaFrame *frame = new aplikacjaFrame("My Application");
+  frame->Show(true);
+  return true;
 }

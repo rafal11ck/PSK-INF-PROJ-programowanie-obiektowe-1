@@ -202,7 +202,7 @@ void testStatGetters(const Character *character) {
 }
 
 int main() {
-  GameData *gd{new GameData};
+  GameData *const gd{new GameData};
   addStats(gd);
   addEqSlots(gd);
   addItems(gd);
@@ -216,6 +216,5 @@ int main() {
   testStatGetters(character);
 
   delete character;
-
   delete gd;
 }
